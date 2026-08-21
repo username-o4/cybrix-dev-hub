@@ -1,0 +1,142 @@
+/* Modern Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #e4e4e7;
+    background-color: #09090b;
+    padding: 0;
+}
+
+/* Midnight Arcade Header - Sharp typography with Electric Amber accent */
+.js-hero-header {
+    background-color: #18181b;
+    border-bottom: 4px solid #f59e0b;
+    color: #ffffff;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.js-hero-header h1 {
+    font-size: 2.7rem;
+    margin-bottom: 1.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.js-hero-header p {
+    font-size: 1.2rem;
+    color: #a1a1aa;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Layout Container */
+.js-main-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+}
+
+/* Sharp, Dark Glassmorphism Info Cards */
+.js-info-card {
+    margin-bottom: 3rem;
+    background-color: #111113;
+    padding: 2.5rem;
+    border-radius: 4px;
+    border: 1px solid #27272a;
+}
+
+h2 {
+    color: #f59e0b;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+p {
+    margin-bottom: 1.2rem;
+    color: #d4d4d8;
+}
+
+/* Asymmetric Timeline using Dark Slate and Amber Dots */
+.js-timeline {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 2rem;
+}
+
+.js-timeline-item {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    border-left: 2px dashed #f59e0b;
+    position: relative;
+}
+
+.js-time-label {
+    font-weight: 800;
+    color: #f59e0b;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Custom List Formatting */
+.js-uses-list {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.js-uses-list li {
+    margin-bottom: 0.9rem;
+    color: #d4d4d8;
+}
+
+.js-uses-list strong {
+    color: #38bdf8; /* Accent light blue for balance */
+}
+
+/* High-Contrast Interactive CTA Button */
+.js-cta-container {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.js-btn-start {
+    display: inline-block;
+    background-color: #f59e0b;
+    color: #09090b;
+    padding: 1.2rem 3.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.js-btn-start:hover {
+    background-color: #f59e0b;
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+    transform: translateY(-2px);
+}
+
+.js-btn-start:active {
+    transform: translateY(0);
+}
+
+/* Responsive Scaling */
+@media (max-width: 600px) {
+    .js-hero-header h1 { font-size: 2rem; }
+    .js-info-card { padding: 1.75rem; }
+}
