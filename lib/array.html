@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python Lists (Arrays) - Beginner Tutorial</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python Lists & Arrays Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is a List in Python?</h2>
+    <p class="intro-text">
+      In the previous lesson, we learned that a variable is like a single box holding one piece of data. But what if you need to store a collection of related items, like a shopping list, a set of high scores, or a list of user emails? Creating a separate variable for every single item would make your code messy and inefficient. 
+    </p>
+    <p class="intro-text">
+      This is where a <strong>List</strong> comes in. In Python, a list is an ordered, changeable collection of items wrapped inside square brackets <code>[ ]</code>. While other languages call this structure an "array," Python lists are much more powerful because they can hold different types of data simultaneously (strings, integers, and Booleans all mixed together) and can grow or shrink dynamically as your script runs.
+    </p>
+
+    <!-- SECTION 2: SYNTAX & CREATION -->
+    <h2>➡️ 2. How to Create a List</h2>
+    <p class="intro-text">
+      To create a list, you define a variable name, use the assignment operator <code>=</code>, and place your values inside square brackets, separating each item with a comma.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Creating a list of tech terms (Strings)</span>
+programming_languages = ["Python", "JavaScript", "C++", "Rust"]
+
+<span class="code-comment"># Creating a mixed data type list</span>
+user_profile = ["Alex", 28, 94.5, True]
+
+<span class="code-comment"># Printing the entire list container</span>
+print(programming_languages)</code></pre>
+    </div>
+
+    <!-- SECTION 3: ACCESSING ITEMS VIA INDEXING -->
+    <h2>➡️ 3. Understanding List Indexing</h2>
+    <p class="intro-text">
+      Every single item inside a Python list has an assigned position number called an <strong>index</strong>. In computer science, counting always starts at <strong>0</strong>, not 1! This means the very first item in your list is at index 0, the second item is at index 1, and so forth.
+    </p>
+    <p class="intro-text">
+      Python also supports <em>negative indexing</em>, which lets you look at the list backwards. An index of <code>-1</code> always grabs the very last item in the list, which is highly useful when you don't know exactly how long your list is.
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code>tech_tools = ["VS Code", "Terminal", "Git", "Docker"]
+
+<span class="code-comment"># Accessing elements by their position</span>
+print(tech_tools[0])  <span class="code-comment"># This outputs: VS Code</span>
+print(tech_tools[2])  <span class="code-comment"># This outputs: Git</span>
+
+<span class="code-comment"># Accessing using negative index tricks</span>
+print(tech_tools[-1]) <span class="code-comment"># This outputs the last element: Docker</span></code></pre>
+    </div>
+
+    <!-- SECTION 4: LIST MODIFICATION METHODOLOGY -->
+    <h2>➡️ 4. Adding and Modifying List Items</h2>
+    <p class="intro-text">
+      Lists are <strong>mutable</strong>, meaning you can freely alter them after they are built. Python gives us built-in methods like <code>.append()</code> to push items to the end of a list, and standard index targeting to overwrite individual elements.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>crypto_portfolio = ["Bitcoin", "Ethereum"]
+
+<span class="code-comment"># 1. Overwriting an existing item</span>
+crypto_portfolio[1] = "Solana" 
+print(crypto_portfolio) <span class="code-comment"># Outputs: ['Bitcoin', 'Solana']</span>
+
+<span class="code-comment"># 2. Appending a brand new item to the back</span>
+crypto_portfolio.append("Cardano")
+print(crypto_portfolio) <span class="code-comment"># Outputs: ['Bitcoin', 'Solana', 'Cardano']</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Critical Mistakes and Error Handling</h2>
+    <p class="intro-text">
+      Working with collections can be tricky at first. Keep an eye out for these two critical errors that crash beginner web tools and apps daily:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The IndexError (Out of Range):</strong> This happens if you attempt to access an index position that simply doesn't exist. For instance, if your list contains 3 items, trying to print index <code>[3]</code> will crash your script because the only valid indexes are 0, 1, and 2.
+      </li>
+      <li>
+        ⚠️ <strong>The Dot Notation Rule:</strong> Methods like <code>.append()</code> alter your list directly in the background. Beginners often mistakenly write <code>my_list = my_list.append("item")</code>. Doing this will actually wipe out your list data and turn the variable completely blank (<code>None</code>).
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Array Practice</h2>
+    <p class="intro-text">
+      Let's put this into action! Open your local text editor and complete this practical exercise:
+      Create a list variable named <code>my_hobbies</code> filled with three different activities. 
+      Use the <code>.append()</code> method to add a fourth hobby to the collection. 
+      Finally, print out only the second hobby in your list using the correct bracket index notation.
+    </p>
+
+        <div class="py-cta-container" style="float: right;">
+            <a href="array-2-.html" class="py-btn-start">More on Arrays</a>
+        </div>
+  </div>
+
+</body>
+</html>
