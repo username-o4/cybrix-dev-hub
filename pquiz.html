@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Essentials Quiz</title>
     <style>
-        /* Base Reset & Variables */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,8 +13,8 @@
         }
 
         :root {
-            --primary-color: #306998; /* Python Blue Theme */
-            --secondary-color: #ffd43b; /* Python Yellow Accent */
+            --primary-color: #306998;
+            --secondary-color: #ffd43b;
             --success-color: #2ecc71;
             --error-color: #e74c3c;
             --bg-color: #f5f7fb;
@@ -33,7 +32,6 @@
             padding: 20px;
         }
 
-        /* Quiz Container */
         .quiz-container {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -41,7 +39,6 @@
             width: 100%;
             max-width: 600px;
             padding: 30px;
-            transition: all 0.3s ease;
             border-top: 5px solid var(--secondary-color);
         }
 
@@ -52,7 +49,6 @@
             font-size: 24px;
         }
 
-        /* Score Tracker & Question */
         .quiz-header {
             display: flex;
             justify-content: space-between;
@@ -67,16 +63,6 @@
             line-height: 1.5;
         }
 
-        /* Code snippets style helper */
-        code {
-            background-color: #f1f2f6;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-        }
-
-        /* Option Buttons */
         .options-container {
             display: flex;
             flex-direction: column;
@@ -101,7 +87,6 @@
             border-color: var(--primary-color);
         }
 
-        /* State Classes managed via JS */
         .option-btn.correct {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -114,7 +99,6 @@
             color: #721c24;
         }
 
-        /* Controls */
         .controls {
             display: flex;
             justify-content: flex-end;
@@ -136,7 +120,6 @@
             background-color: #245175;
         }
 
-        /* Results Section */
         .result-screen {
             text-align: center;
             display: none;
@@ -168,7 +151,7 @@
 
     <div class="quiz-container">
         <h1>Python Programming Quiz</h1>
-        <!-- Active Quiz UI -->
+        
         <div id="quiz-box">
             <div class="quiz-header">
                 <span id="question-counter">Question 1 of 10</span>
@@ -177,15 +160,12 @@
             <div class="question-text" id="question-text">
                 Loading question...
             </div>
-            <div class="options-container" id="options-container">
-                <!-- Buttons dynamically loaded by JS -->
-            </div>
+            <div class="options-container" id="options-container"></div>
             <div class="controls">
                 <button class="next-btn" id="next-btn">Next Question</button>
             </div>
         </div>
 
-        <!-- End Game Screen -->
         <div id="result-box" class="result-screen">
             <h2>Quiz Completed!</h2>
             <p class="score-text">You scored <span id="final-score">0</span> out of <span id="total-questions">0</span></p>
@@ -194,7 +174,6 @@
     </div>
 
     <script>
-        // Quiz Questions Data Structure (10 Python Questions)
         const quizData = [
             {
                 question: "Which of the following is the correct extension for a Python file?",
@@ -218,7 +197,7 @@
             },
             {
                 question: "How do you start a comment block in Python?",
-                options: ["// This is a comment", "/* This is a comment */", "<!-- This is a comment -->", "# This is a comment"],
+                options: ["// comment", "/* comment */", "<!-- comment -->", "# comment"],
                 correct: 3
             },
             {
@@ -248,11 +227,9 @@
             }
         ];
 
-        // State Tracking
         let currentQuestionIndex = 0;
         let score = 0;
 
-        // DOM Element Selections
         const quizBox = document.getElementById("quiz-box");
         const resultBox = document.getElementById("result-box");
         const questionCounter = document.getElementById("question-counter");
@@ -264,7 +241,6 @@
         const totalQuestions = document.getElementById("total-questions");
         const restartBtn = document.getElementById("restart-btn");
 
-        // Initialize App
         function startQuiz() {
             currentQuestionIndex = 0;
             score = 0;
@@ -274,16 +250,13 @@
             loadQuestion();
         }
 
-        // Render Current Question
         function loadQuestion() {
             resetState();
             const currentData = quizData[currentQuestionIndex];
             
-            // Set Text
             questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
             questionText.textContent = currentData.question;
 
-            // Render Option Buttons
             currentData.options.forEach((option, index) => {
                 const button = document.createElement("button");
                 button.textContent = option;
@@ -293,10 +266,39 @@
             });
         }
 
-        // Clean up visual states before loading next question
         function resetState() {
             nextBtn.style.display = "none";
             optionsContainer.innerHTML = "";
         }
 
-        // Handle Choice Selection
+        function selectAnswer(selectedIndex, selectedButton) {
+            const correctAnswerIndex = quizData[currentQuestionIndex].correct;
+            const allButtons = optionsContainer.querySelectorAll(".option-btn");
+
+            if (selectedIndex === correctAnswerIndex) {
+                selectedButton.classList.add("correct");
+                score++;
+                scoreCounter.textContent = `Score: ${score}`;
+            } else {
+                selectedButton.classList.add("wrong");
+                allButtons[correctAnswerIndex].classList.add("correct");
+            }
+
+            allButtons.forEach(btn => btn.disabled = true);
+            nextBtn.style.display = "block";
+        }
+
+        function handleNextButton() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizBox.style.display = "none";
+            resultBox.style.display = "block";
+            finalScore.textContent = score;
+        }
