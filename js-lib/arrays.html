@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript Arrays - Beginner Tutorial</title>
+    <link rel="stylesheet" href="../css/js-style.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">JavaScript Arrays Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is an Array in JavaScript?</h2>
+    <p class="intro-text">
+      In our previous guide, we explored how JavaScript variables store a single piece of data, like a username or a tracking score. But as your web applications grow, you will quickly find situations where you need to manage a whole collection of related data assets—such as a list of products in a digital shopping cart, a row of image file links, or a group of student grades.
+    </p>
+    <p class="intro-text">
+      To handle this, JavaScript gives us a powerful collection structure called an <strong>Array</strong>. An array is a single, organized list container that holds multiple values wrapped inside square brackets <code>[ ]</code>. Just like Python lists, JavaScript arrays are entirely dynamic, meaning they can hold any mixture of text strings, numbers, or Booleans simultaneously and scale in size automatically.
+    </p>
+
+    <!-- SECTION 2: SYNTAX & CREATION -->
+    <h2>➡️ 2. Declaring and Creating an Array</h2>
+    <p class="intro-text">
+      To initialize a modern array structure, combine either the <code>let</code> or <code>const</code> keyword with a descriptive variable name, followed by your data values separated cleanly by commas inside square brackets.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment">// Creating an array tracking framework profiles</span>
+let webFrameworks = ["React", "Vue", "Angular", "Next.js"];
+
+<span class="code-comment">// Arrays can also comfortably house mixed data streams</span>
+let productData = ["Cyber Hoodie", 45.99, true];
+
+<span class="code-comment">// Printing out the complete collection profile</span>
+console.log(webFrameworks);</code></pre>
+    </div>
+
+    <!-- SECTION 3: INDEXING RULES -->
+    <h2>➡️ 3. Zero-Based Index Positioning</h2>
+    <p class="intro-text">
+      Every single element packed inside a JavaScript array is automatically assigned a tracking position number called an <strong>index</strong>. Following universal programming parameters, JavaScript uses **zero-based counting**. This means the absolute first element in your list sits at index position <code>0</code>, the second sits at index <code>1</code>, and the tracking ticks upward sequentially.
+    </p>
+    <p class="intro-text">
+      To read an isolated item out of your array, write out the name of your collection variable followed by the target location index position number wrapped tightly in brackets.
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code>let serverCluster = ["Server_Alpha", "Server_Beta", "Server_Gamma"];
+
+<span class="code-comment">// Extracting individual items via index positions</span>
+console.log(serverCluster[0]); <span class="code-comment">// Outputs: Server_Alpha</span>
+console.log(serverCluster[2]); <span class="code-comment">// Outputs: Server_Gamma</span>
+
+<span class="code-comment">// Overwriting data inside a specific index position</span>
+serverCluster[1] = "Server_Delta";
+console.log(serverCluster);    <span class="code-comment">// Outputs: ["Server_Alpha", "Server_Delta", "Server_Gamma"]</span></code></pre>
+    </div>
+
+    <!-- SECTION 4: THE PUSH & POP METHODS -->
+    <h2>➡️ 4. Modifying Arrays via Built-In Methods</h2>
+    <p class="intro-text">
+      JavaScript arrays possess special built-in instructions called <strong>methods</strong> that allow you to modify collections instantly. The two most fundamental methods you will utilize daily on the frontend are <code>.push()</code> and <code>.pop()</code>:
+    </p>
+    <ul class="features-list">
+      <li>
+        <strong><code>.push("item")</code></strong> — Appends a brand-new data element directly onto the very end of your active array list.
+      </li>
+      <li>
+        <strong><code>.pop()</code></strong> — Chops off and removes the absolute final element from the back of your array. It does not require any input arguments inside its parentheses.
+      </li>
+    </ul>
+    
+    <div class="code-snippet-box">
+      <pre><code>let userInventory = ["Iron Shield", "Health Potion"];
+
+<span class="code-comment">// Adding a third item to the back of our array string</span>
+userInventory.push("Magic Wand");
+console.log(userInventory); <span class="code-comment">// Outputs: ["Iron Shield", "Health Potion", "Magic Wand"]</span>
+
+<span class="code-comment">// Removing the last item we just attached</span>
+userInventory.pop();
+console.log(userInventory); <span class="code-comment">// Outputs: ["Iron Shield", "Health Potion"]</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Pitfalls and Undefined Data Blunders</h2>
+    <p class="intro-text">
+      Array tracking can cause execution crashes on your browser engine if you aren't careful with boundary limits:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Undefined Lookup Trap:</strong> Unlike Python, which crashes your program with a loud <code>IndexError</code> if you request an index that doesn't exist, JavaScript remains silent. If your array has 3 items and you ask for index <code>99</code>, JavaScript returns <code>undefined</code>. If you try to run methods on that undefined data later, your entire site will break.
+      </li>
+      <li>
+        ⚠️ <strong>The Length Property Shift:</strong> JavaScript arrays contain an automated property called <code>.length</code> that tracks how many total items exist inside. Remember that the length number is always **one count higher** than your maximum index number, because counting indexes starts at 0!
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Frontend Array Practice</h2>
+    <p class="intro-text">
+      Let's write some code! Open your script workspace and complete this task:
+      Create a mutable array named <code>favoriteMovies</code> filled with three title strings. 
+      Use the correct method utility to add a fourth film title to the back of the collection. 
+      Finally, change the title of the very first film in your array (index 0) to a different movie name, and use <code>console.log()</code> to print your final list framework to the browser developer screen.
+    </p>
+        <div class="js-cta-container">
+            <a href="objects.html" class="js-btn-start">Object</a>
+        </div>
+  </div>
+
+</body>
+</html>
