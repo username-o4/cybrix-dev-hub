@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python If / Else Statements - Beginner Tutorial</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python If / Else Logic Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is Conditional Logic?</h2>
+    <p class="intro-text">
+      Up until now, the Python code scripts you have written have run in a straight, predictable line. The computer starts at line 1, executes it, moves to line 2, and continues downward until it hits the end of the file. However, real-world software needs to make decisions based on changing data. 
+    </p>
+    <p class="intro-text">
+      Think of conditional logic like a real-world scenario: <em>If</em> it is raining outside, you take an umbrella. <em>Else</em> (if it is clear), you leave the umbrella at home. In Python, we use <strong>If and Else statements</strong> to act as traffic controllers in our scripts. They evaluate whether a specific condition is true or false, and then force the program to run different paths of code based on that calculation.
+    </p>
+
+    <!-- SECTION 2: SYNTAX & INDENTATION RULES -->
+    <h2>➡️ 2. Syntax Structure and Indentation</h2>
+    <p class="intro-text">
+      To write an if statement, you use the <code>if</code> keyword, state a logical condition, and finish the line with a trailing colon <code>:</code>. 
+    </p>
+    <p class="intro-text">
+      The most critical structural detail here is Python's use of <strong>indentation</strong>. Any lines of code that should run only when the condition is met <em>must</em> be spaced forward by 4 spaces (or one tab). If you forget to indent your code blocks, Python will fail to understand the layout structure and throw an immediate error.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Setting up a simple entry filter system</span>
+user_age = 20
+
+if user_age >= 18:
+    print("Access Granted!") <span class="code-comment"># Indented: Runs only if age is 18+</span>
+else:
+    print("Access Denied!")  <span class="code-comment"># Indented: Runs only if age is under 18</span></code></pre>
+    </div>
+
+    <!-- SECTION 3: COMPARISON OPERATORS -->
+    <h2>➡️ 3. The Logical Comparison Toolbox</h2>
+    <p class="intro-text">
+      To build conditions for your if statements, you need tools to compare variables against numbers or text strings. Python gives us a clean collection of math-based <strong>comparison operators</strong> that always calculate down to a strict Boolean value (<code>True</code> or <code>False</code>):
+    </p>
+    <ul class="features-list">
+      <li><strong><code>==</code> (Is Equal To):</strong> Checks if two values match perfectly. Be careful not to use a single equals sign (<code>=</code>), which is only used for assigning variables!</li>
+      <li><strong><code>!=</code> (Is Not Equal To):</strong> Checks if two data points are completely different.</li>
+      <li><strong><code>&gt;</code> and <code>&lt;</code>:</strong> Greater than and less than comparisons.</li>
+      <li><strong><code>&gt;=</code> and <code>&lt;=</code>:</strong> Greater than or equal to, and less than or equal to.</li>
+    </ul>
+
+    <!-- SECTION 4: MULTIPLE CONDITIONS WITH ELIF -->
+    <h2>➡️ 4. Handling Many Paths with Elif</h2>
+    <p class="intro-text">
+      What happens if your application has more than just two choices? For instance, a video game might need to hand out Gold, Silver, or Bronze medals depending on a player's rank. 
+    </p>
+    <p class="intro-text">
+      To handle three or more distinct directions, Python introduces the <code>elif</code> keyword (short for "else if"). You can string together as many elif checks as your app requires, and Python will evaluate them sequentially from top to bottom until it finds the first match.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>exam_score = 85
+
+if exam_score >= 90:
+    print("Grade: A")
+elif exam_score >= 80:
+    print("Grade: B") <span class="code-comment"># This path is selected and executed</span>
+elif exam_score >= 70:
+    print("Grade: C")
+else:
+    print("Grade: F") <span class="code-comment"># Fallback path if all statements fail</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Mistakes to Avoid</h2>
+    <p class="intro-text">
+      Conditional syntax transitions can lead to a few frequent logic errors for beginners:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>Missing Colons:</strong> Forgetting the colon <code>:</code> at the end of an <code>if</code>, <code>elif</code>, or <code>else</code> line is the number one cause of syntax errors in beginner scripts.
+      </li>
+      <li>
+        ⚠️ <strong>The Single Equals Trap:</strong> Writing <code>if score = 100:</code> will cause your app to crash instantly. Remember to always use the double equals operator <code>==</code> when checking for exact equivalence.
+      </li>
+      <li>
+        ⚠️ <strong>Incorrect Order of Operations:</strong> Python stops evaluating as soon as it hits the first true statement. If you structure your range checks poorly, higher values might get trapped inside early catch-all blocks accidentally.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Logic Practice</h2>
+    <p class="intro-text">
+      Let's write some code! Open your local editor and try this exercise:
+      Create a variable named <code>temperature</code> and assign it an integer value representing degrees. 
+      Write an if statement that prints <code>"It is hot!"</code> if the value is greater than 30. 
+      Add an elif block to print <code>"It is nice!"</code> if the value is greater than 15. 
+      Finally, add an else block to fallback and print <code>"It is cold!"</code> if all other conditions fail.
+    </p>
+            <div class="py-cta-container" style="float: right;">
+            <a href="loop.html" class="py-btn-start">loops for && while</a>
+        </div>
+  </div>
+</body>
+</html>
