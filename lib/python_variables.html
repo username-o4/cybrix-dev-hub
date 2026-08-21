@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python Variables - Beginner Tutorial</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python Variables Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is a Variable?</h2>
+    <p class="intro-text">
+      In programming, a <strong>variable</strong> is a fundamental concept that acts as a named storage container for data. 
+      Think of a variable as a physical cardboard storage box inside a massive warehouse. If you want to keep something safe, 
+      you place it inside the box and slap a clean, written label on the outside. Whenever you need that item later, you don't 
+      have to search the whole warehouse—you simply call out the name on the label.
+    </p>
+    <p class="intro-text">
+      In Python, variables allow you to store numbers, text strings, lists, or complex data structures in computer memory. 
+      Once a value is stored in a variable, your program can reference, modify, or print that data dynamically as the script executes.
+    </p>
+
+    <!-- SECTION 2: SYNTAX & CREATION -->
+    <h2>➡️ 2. Declaring and Assigning Variables</h2>
+    <p class="intro-text">
+      Unlike rigid languages like Java, C++, or C#, Python does not require you to explicitly state what kind of data your variable will hold. 
+      Python uses an automated feature called <strong>dynamic typing</strong>. This means the computer figures out the exact data type at 
+      the exact moment you assign a value using the assignment operator (the equals sign <code>=</code>).
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Creating separate variables with different data types</span>
+player_score = 1500
+player_name = "Alex"
+is_game_over = False
+
+<span class="code-comment"># Outputting the data to the console terminal</span>
+print(player_score)
+print(player_name)</code></pre>
+    </div>
+
+    <!-- SECTION 3: STEP-BY-STEP BREAKDOWN -->
+    <h2>➡️ 3. Line-by-Line Code Breakdown</h2>
+    <p class="intro-text">
+      Let's look at exactly what happens inside the computer's memory when the script above runs:
+    </p>
+    <ul class="features-list">
+      <li>
+        <strong>Line 1: <code>player_score = 1500</code></strong> — Python reads the label <code>player_score</code>, 
+        creates a small chunk of space in your computer's RAM, stores the integer number <code>1500</code> inside it, and links the label to that space.
+      </li>
+      <li>
+        <strong>Line 2: <code>player_name = "Alex"</code></strong> — Python sees the quote marks around <code>"Alex"</code>, 
+        recognizes it as a text string data type, and attaches it securely to the <code>player_name</code> label.
+      </li>
+      <li>
+        <strong>Line 3: <code>is_game_over = False</code></strong> — This establishes a Boolean flag variable. 
+        It can only ever hold two strict states: <code>True</code> or <code>False</code>. This is vital for managing game flow and app logic.
+      </li>
+    </ul>
+
+    <!-- SECTION 4: OVERWRITING DATA -->
+    <h2>➡️ 4. Updating Variable Values</h2>
+    <p class="intro-text">
+      The word "variable" implies that the data inside can <em>vary</em> or change over time. If a user gains points in your game, 
+      you can easily overwrite or add directly to the existing information inside that memory box.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>xp_points = 50
+print(xp_points) <span class="code-comment"># This outputs: 50</span>
+
+<span class="code-comment"># Overwriting the data completely with a brand new assignment</span>
+xp_points = 120
+print(xp_points) <span class="code-comment"># This outputs: 120</span>
+
+<span class="code-comment"># Modifying the variable relative to its current state</span>
+xp_points = xp_points + 30
+print(xp_points) <span class="code-comment"># This outputs: 150</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER MISTAKES -->
+    <h2>➡️ 5. Pitfalls and Critical Naming Rules</h2>
+    <p class="intro-text">
+      While Python makes dealing with variables incredibly smooth, beginners often run into a few strict technical limitations that cause programs to crash:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Dynamic Swapping Trap:</strong> Because Python is dynamically typed, it will let you change a variable from a number to a text string without warnings. 
+        However, if you accidentally try to do math calculations on a text string variable later in your code, Python will throw a severe <code>TypeError</code>.
+      </li>
+      <li>
+        ⚠️ <strong>Case Sensitivity:</strong> Capital letters matter! The variable labels <code>userage</code>, <code>userAge</code>, and <code>USERAGE</code> 
+        are treated as three completely distinct, isolated storage blocks by the computer.
+      </li>
+      <li>
+        ⚠️ <strong>Illegal Characters:</strong> Variable labels must always start with a letter or an underscore character. They can never start with a number (e.g., <code>1st_place = "Gold"</code> will crash your script instantly) and cannot contain blank spaces or special characters like hyphens.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Quick Hands-On Practice Exercise</h2>
+    <p class="intro-text">
+      To make this information stick, open up your code editor and complete this short task:
+      Create a variable named <code>car_brand</code> and assign it a string value like <code>"Tesla"</code>. 
+      Next, create a variable named <code>max_speed</code> and set it to an integer. 
+      Finally, use Python's <code>print()</code> function to output both variables back-to-back inside your machine terminal window.
+    </p>
+
+        <div class="py-cta-container">
+            <a href="python_data_types.html" class="py-btn-start">Next Data types</a>
+        </div>
+  </div>
+
+</body>
+</html>
