@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Break Room - Bug Smasher</title>
+    <style>
+        .game-wrapper {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 440px;
+            margin: 30px auto;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            border: 2px solid #333;
+        }
+        .game-header h2 {
+            margin: 0 0 5px 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .game-header p {
+            color: #888;
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+        }
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+        #gameCanvas {
+            background-color: #000;
+            border: 4px solid #00ff00;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+        }
+        .controls-info {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.4;
+        }
+        .start-btn {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        .start-btn:hover {
+            background-color: #00cc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-wrapper">
+    <div class="game-header">
+        <h2>Bug Smasher 2D</h2>
+        <p>Tired of learning? Smash some bugs!</p>
+    </div>
+
+    <div class="score-board">
+        <div>Bugs Fixed: <span id="currentScore">0</span></div>
+        <div>High Score: <span id="highScore">0</span></div>
+    </div>
+
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+    <button class="start-btn" id="startBtn" onclick="startGame()">Start Game</button>
+
+    <div class="controls-info">
+        <strong>Controls:</strong> Use the <strong>Arrow Keys</strong> or <strong>W, A, S, D</strong> on your keyboard to navigate. Don't hit the green border or your own code tail!
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreElement = document.getElementById("currentScore");
+    const highScoreElement = document.getElementById("highScore");
+    const startBtn = document.getElementById("startBtn");
+
+    const gridSize = 20;
+    const tileCount = canvas.width / gridSize;
+
+    let snake = [];
+    let bug = { x: 0, y: 0 };
+    let dx = gridSize;
+    let dy = 0;
+    let score = 0;
+    let highScore = 0;
+    let gameInterval = null;
+    let isGameRunning = false;
+
+    function startGame() {
+        if (isGameRunning) return;
+        
+        // Reset variables
+        snake = [
+            { x: gridSize * 5, y: gridSize * 10 },
+            { x: gridSize * 4, y: gridSize * 10 },
+            { x: gridSize * 3, y: gridSize * 10 }
+        ];
+        dx = gridSize;
+        dy = 0;
+        score = 0;
+        scoreElement.innerText = score;
+        isGameRunning = true;
+        startBtn.style.display = "none";
+        
+        generateBug();
+        
+        if (gameInterval) clearInterval(gameInterval);
+        // Run game loop every 100ms (Adjust for difficulty)
+        gameInterval = setInterval(updateGame, 100);
+    }
+
+    function generateBug() {
+        bug.x = Math.floor(Math.random() * tileCount) * gridSize;
+        bug.y = Math.floor(Math.random() * tileCount) * gridSize;
+        
+        // Ensure bug doesn't spawn inside the snake
+        snake.forEach(part => {
+            if (part.x === bug.x && part.y === bug.y) {
+                generateBug();
+            }
+        });
+    }
+
+    function updateGame() {
+        // Move snake head forward
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+        // Check for border collision
+        if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) {
+            return gameOver();
+        }
+
+        // Check self collision
+        for (let i = 0; i < snake.length; i++) {
+            if (head.x === snake[i].x && head.y === snake[i].y) {
+                return gameOver();
+            }
+        }
+
+        // Add new head to snake array
+        snake.unshift(head);
+
+        // Check if snake ate the bug
+        if (head.x === bug.x && head.y === bug.y) {
+            score++;
+            scoreElement.innerText = score;
+            if (score > highScore) {
+                highScore = score;
+                highScoreElement.innerText = highScore;
+            }
+            generateBug();
+        } else {
+            // Remove tail chunk if bug wasn't eaten
+            snake.pop();
+        }
+
+        draw();
+    }
+
+    function draw() {
+        // Clear canvas
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw bug (Red bug box)
+        ctx.fillStyle = "#ff3333";
+        ctx.fillRect(bug.x + 2, bug.y + 2, gridSize - 4, gridSize - 4);
+
+        // Draw snake (Green developer block)
+        snake.forEach((part, index) => {
+            // Make the head a slightly different shade
+            ctx.fillStyle = index === 0 ? "#00ff00" : "#00aa00";
+            ctx.fillRect(part.x + 1, part.y + 1, gridSize - 2, gridSize - 2);
+        });
+    }
+
+    function gameOver() {
+        clearInterval(gameInterval);
+        isGameRunning = false;
+        startBtn.style.display = "inline-block";
+        startBtn.innerText = "Try Again";
+        
+        // Render Game Over Screen Text
+        ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = "#ff3333";
+        ctx.font = "24px 'Courier New'";
+        ctx.textAlign = "center";
+        ctx.fillText("CRASH LOG GENERATED", canvas.width / 2, canvas.height / 2 - 10);
+        
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "14px 'Courier New'";
+        ctx.fillText("Game Over. Your code compilation failed.", canvas.width / 2, canvas.height / 2 + 20);
+    }
+
+    // Keyboard Event Listener
+    window.addEventListener("keydown", e => {
+        if (!isGameRunning) return;
+        
+        const key = e.key.toLowerCase();
+        
+        // Prevent default scrolling keys behavior
+        if(["arrowup","arrowdown","arrowleft","arrowright"," "].indexOf(e.key) > -1) {
+            e.preventDefault();
+        }
+
+        // Change directions safely (Prevent 180-degree immediate self-crashing moves)
+        if ((key === "arrowup" || key === "w") && dy === 0) {
+            dx = 0; dy = -gridSize;
+        } else if ((key === "arrowdown" || key === "s") && dy === 0) {
+            dx = 0; dy = gridSize;
+        } else if ((key === "arrowleft" || key === "a") && dx === 0) {
+            dx = -gridSize; dy = 0;
+        } else if ((key === "arrowright" || key === "d") && dx === 0) {
+            dx = gridSize; dy = 0;
+        }
+    });
+
+    // Draw initial blank canvas structure
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+</script>
+
+</body>
+</html>
 
