@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basics Quiz</title>
+    <style>
+        :root {
+            --primary-color: #306998;
+            --secondary-color: #ffd43b;
+            --text-color: #333333;
+            --bg-color: #f7f9fa;
+            --card-bg: #ffffff;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background-color: var(--primary-color);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-item {
+            background-color: #f0f4f8;
+            border: 2px solid #d0d7de;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .option-item:hover {
+            background-color: #e1e9f0;
+            border-color: var(--primary-color);
+        }
+
+        .option-item.correct {
+            background-color: #d4edda;
+            border-color: var(--success-color);
+            color: #155724;
+        }
+
+        .option-item.incorrect {
+            background-color: #f8d7da;
+            border-color: var(--error-color);
+            color: #721c24;
+        }
+
+        .option-item.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .feedback.correct {
+            display: block;
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .feedback.incorrect {
+            display: block;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #234f75;
+        }
+
+        .results {
+            text-align: center;
+        }
+
+        .score-text {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div id="quiz-screen">
+        <h2 id="quiz-title">Python Basics Quiz</h2>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="question" id="question-text">Question goes here?</div>
+        <ul class="options-list" id="options-container">
+            <!-- Options injected by JS -->
+        </ul>
+        <div class="feedback" id="feedback-message"></div>
+        <button class="btn" id="next-btn" style="display: none;">Next Question</button>
+    </div>
+
+    <div id="results-screen" class="results" style="display: none;">
+        <h2>Quiz Completed!</h2>
+        <p class="score-text" id="score-display">You scored 0 out of 0</p>
+        <button class="btn" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        {
+            question: "Which of the following is the correct way to create a variable named age and give it a value of 25?",
+            options: ["var age = 25", "25 = age", "age = 25", "set age = 25"],
+            correct: 2,
+            feedback: ["In Python, you do not need to write the word 'var'.", "The variable name must always be on the left side.", "Correct! This is the proper assignment syntax.", "Python does not use a 'set' keyword here."]
+        },
+        {
+            question: "Which of the following is an example of a string in Python?",
+            options: ["10", '"Hello, World!"', "True", "3.14"],
+            correct: 1,
+            feedback: ["This is a whole number (integer).", "Correct! Strings are text surrounded by quotation marks.", "This is a boolean value.", "This is a float point number."]
+        },
+        {
+            question: "Which data type is used to represent whole numbers, like 42?",
+            options: ["str", "float", "bool", "int"],
+            correct: 3,
+            feedback: ["Used for text.", "Used for decimal numbers.", "Used for True/False logic.", "Correct! 'int' stands for integer."]
+        },
+        {
+            question: "Which of the following is the correct syntax to write a loop that repeats a specific number of times?",
+            options: ["for i in range(5):", "loop i in range(5):", "for i from 1 to 5:", "repeat 5 times:"],
+            correct: 0,
+            feedback: ["Correct! The for loop with range() is the python standard.", "Python does not use a 'loop' keyword.", "Incorrect syntax for Python loop structures.", "Python does not use a 'repeat' keyword."]
+        },
+        {
+            question: "Which of the following is a Boolean value in Python?",
+            options: ['"False"', "0", "True", '"True"'],
+            correct: 2,
+            feedback: ["Quotation marks turn this into a string.", "This is an integer.", "Correct! True and False are the python boolean types.", "Quotation marks turn this into a string."]
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    const feedbackMessage = document.getElementById("feedback-message");
+    const nextButton = document.getElementById("next-btn");
+    const progressBar = document.getElementById("progress");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultsScreen = document.getElementById("results-screen");
+    const scoreDisplay = document.getElementById("score-display");
+
+    function loadQuestion() {
+        resetState();
+        let currentQuestion = quizData[currentQuestionIndex];
+        questionText.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
+        progressBar.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
+
+        currentQuestion.options.forEach((option, index) => {
+            const li = document.createElement("li");
+            li.innerText = option;
+            li.classList.add("option-item");
+            li.addEventListener("click", () => selectOption(index, li));
+            optionsContainer.appendChild(li);
+        });
+    }
+
+    function resetState() {
+        nextButton.style.display = "none";
+        feedbackMessage.className = "feedback";
+        feedbackMessage.style.display = "none";
+        optionsContainer.innerHTML = "";
+    }
+
+    function selectOption(selectedIndex, selectedElement) {
+        let currentQuestion = quizData[currentQuestionIndex];
+        const allOptions = optionsContainer.querySelectorAll(".option-item");
+
+        allOptions.forEach((option, index) => {
+            option.classList.add("disabled");
+            if (index === currentQuestion.correct) {
+                option.classList.add("correct");
+            }
+        });
+
+        if (selectedIndex === currentQuestion.correct) {
+            score++;
+            feedbackMessage.innerText = "Correct! " + currentQuestion.feedback[selectedIndex];
+            feedbackMessage.classList.add("correct");
+        } else {
+            selectedElement.classList.add("incorrect");
+            feedbackMessage.innerText = "Wrong. " + currentQuestion.feedback[selectedIndex];
+            feedbackMessage.classList.add("incorrect");
+        }
+
+        feedbackMessage.style.display = "block";
+        nextButton.style.display = "block";
+    }
+
+    nextButton.addEventListener("click", () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    });
+
+    function showResults() {
+        quizScreen.style.display = "none";
+        resultsScreen.style.display = "block";
+        scoreDisplay.innerText = `You scored ${score} out of ${quizData.length}`;
+    }
+
+    function restartQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        resultsScreen.style.display = "none";
+        quizScreen.style.display = "block";
+        loadQuestion();
+    }
+
+    // Initialize Quiz
+    loadQuestion();
+</script>
+
+</body>
+</html>
