@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python Dictionaries - Beginner Tutorial</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python Dictionaries Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is a Dictionary in Python?</h2>
+    <p class="intro-text">
+      In our previous guide, we explored how lists work by tracking a simple line of data using position numbers (0, 1, 2...). However, sequential numbering isn't always the best way to model real-world details. For instance, if you want to store information about a user profile, mapping an age to index 1 or an email address to index 2 is easy to forget and makes your code confusing.
+    </p>
+    <p class="intro-text">
+      To solve this, Python gives us a structure called a <strong>Dictionary</strong>. A dictionary is an unordered, changeable collection that maps distinct labels to specific pieces of information. It uses <strong>Key-Value Pairs</strong> wrapped inside curly braces <code>{ }</code>. Instead of a position index number, you look up data by using its customized "Key" label, just like looking up a word's definition inside a physical language dictionary.
+    </p>
+
+    <!-- SECTION 2: SYNTAX & CREATION -->
+    <h2>➡️ 2. Creating a Dictionary</h2>
+    <p class="intro-text">
+      To define a dictionary, use a colon <code>:</code> to bind each Key to its matching Value, and separate separate pairs using commas. Keys must be text strings or numbers, while values can hold absolutely anything.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Storing structured data about a web server configuration</span>
+server_status = {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "is_active": True,
+    "users_online": 342
+}
+
+<span class="code-comment"># Outputting the entire dictionary configuration block</span>
+print(server_status)</code></pre>
+    </div>
+
+    <!-- SECTION 3: RECONSTRUCTING READING STRUCTURES -->
+    <h2>➡️ 3. Fetching Value Data Safely</h2>
+    <p class="intro-text">
+      To read information back out of your dictionary container, write the name of the dictionary followed by the specific Key wrapped inside traditional square brackets.
+    </p>
+    <p class="intro-text">
+      Alternatively, Python provides a safer method named <code>.get()</code>. This built-in function is highly recommended for backend development because it keeps your application from crashing if the label you are searching for is completely missing.
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code>app_user = {"username": "cyber_ninja", "level": 42}
+
+<span class="code-comment"># Method A: Direct Bracket Lookup</span>
+print(app_user["username"]) <span class="code-comment"># This outputs: cyber_ninja</span>
+
+<span class="code-comment"># Method B: The Safe .get() Function</span>
+print(app_user.get("level")) <span class="code-comment"># This outputs: 42</span>
+print(app_user.get("email")) <span class="code-comment"># This outputs: None (No crash!)</span></code></pre>
+    </div>
+
+    <!-- SECTION 4: UPDATING & EXPANDING DATA -->
+    <h2>➡️ 4. Modifying and Adding Key-Value Data</h2>
+    <p class="intro-text">
+      Dictionaries are fully mutable. To update an existing record or append a completely new asset to the data pool, use the exact same assignment syntax structure. If the Key label already exists, Python automatically overwrites the old data. If it doesn't find the label, it generates a brand-new pair.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>player_inventory = {"gold": 100, "weapon": "Iron Sword"}
+
+<span class="code-comment"># 1. Updating an existing value data asset</span>
+player_inventory["gold"] = 250 
+
+<span class="code-comment"># 2. Inserting a brand-new descriptive key-value item</span>
+player_inventory["shield"] = "Wooden Shield"
+
+print(player_inventory) 
+<span class="code-comment"># Outputs: {'gold': 250, 'weapon': 'Iron Sword', 'shield': 'Wooden Shield'}</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Crucial Mistakes to Sidestep</h2>
+    <p class="intro-text">
+      Working with complex keys requires following a few strict development parameters:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The KeyError:</strong> If you try to extract information using bracket syntax on a label that does not exist (like calling <code>app_user["password"]</code> when no password key was configured), Python will halt execution and throw a critical error.
+      </li>
+      <li>
+        ⚠️ <strong>Key Uniqueness:</strong> Dictionary keys must be entirely unique. If you accidentally define a dictionary containing two separate <code>"email"</code> entries, Python will silently drop the first entry and use the second one, erasing your original data.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Dictionary Practice</h2>
+    <p class="intro-text">
+      Let's lock in this knowledge! Open your text editor and complete this short practice challenge:
+      Create a dictionary variable named <code>smart_phone</code> containing three key-value pairs mapping properties for <code>"brand"</code>, <code>"model"</code>, and <code>"storage_gb"</code>. 
+      Write a line of code that updates the storage value to a higher number. 
+      Finally, append a new key named <code>"5g_supported"</code> set to a Boolean value (<code>True</code> or <code>False</code>) and print out the dictionary.
+    </p>
+
+  </div>
+        <div class="py-cta-container" style="float: right;">
+            <a href="if_else.html" class="py-btn-start">Conditional statements</a>
+        </div>
+</body>
+</html>
