@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Python Functions - Beginner Tutorial</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python Functions Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: THE CORE CONCEPT -->
+    <h2>➡️ 1. What is a Function?</h2>
+    <p class="intro-text">
+      As you write larger Python programs, you will quickly notice that you start repeating blocks of code. For example, if you need to calculate tax on a product price, print a formatted user greeting, or check a user's password, writing out those same math blocks and logical statements ten different times across your script makes your code messy, bloated, and incredibly difficult to update.
+    </p>
+    <p class="intro-text">
+      To fix this, programming introduces <strong>Functions</strong>. A function is an isolated, reusable block of code designed to perform a single, specific task. Think of a function like a kitchen blender. You build the blender once, and whenever you need a smoothie, you don't build a new machine from scratch—you simply plug it in, toss in your ingredients, push a button, and get a result back.
+    </p>
+
+    <!-- SECTION 2: SYNTAX STRUCTURE -->
+    <h2>➡️ 2. Defining and Calling a Function</h2>
+    <p class="intro-text">
+      To create a function, you use the <code>def</code> keyword (short for *define*), followed by a descriptive function name, a set of parentheses <code>()</code>, and a closing colon <code>:</code>. 
+    </p>
+    <p class="intro-text">
+      Just like loops and if statements, the lines of code inside your function **must be indented** by 4 spaces. Creating a function only tells Python *how* to do something; it will not actually run until you explicitly "call" or trigger it later by writing its name with parentheses.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># 1. Defining the reusable function block</span>
+def display_welcome_banner():
+    print("=============================")
+    print("Welcome to the Python Dashboard")
+    print("=============================")
+
+<span class="code-comment"># 2. Triggering (calling) the function to run</span>
+display_welcome_banner()
+display_welcome_banner() <span class="code-comment"># Can repeat instantly!</span></code></pre>
+    </div>
+
+    <!-- SECTION 3: INPUT ARGUMENTS -->
+    <h2>➡️ 3. Passing Data Using Parameters and Arguments</h2>
+    <p class="intro-text">
+      Functions become exponentially more powerful when you feed data into them. You can configure your function to accept variable inputs by placing placeholder labels inside the parentheses. These placeholder labels are called <strong>parameters</strong>.
+    </p>
+    <p class="intro-text">
+      When you call the function later, you pass the actual real-world data values (called <strong>arguments</strong>) directly into those placeholders, allowing the function to process different inputs dynamically.
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># 'user_name' acts as the input placeholder parameter</span>
+def greet_user(user_name):
+    print("Access Granted. Hello, " + user_name + "!")
+
+<span class="code-comment"># Passing different real-world values as arguments</span>
+greet_user("Alex")  <span class="code-comment"># Outputs: Access Granted. Hello, Alex!</span>
+greet_user("Sarah") <span class="code-comment"># Outputs: Access Granted. Hello, Sarah!</span></code></pre>
+    </div>
+
+    <!-- SECTION 4: THE RETURN KEYWORD -->
+    <h2>➡️ 4. Sending Data Back with Return</h2>
+    <p class="intro-text">
+      Sometimes, you don't want a function to just print text straight to the screen. Instead, you might want it to calculate a value or modify data in the background and pass the final result back to the main flow of your script.
+    </p>
+    <p class="intro-text">
+      To achieve this, use the <code>return</code> keyword. The moment Python hits a return statement inside a function, it stops running the function immediately and hands the calculated data back to whatever line called it, allowing you to save that result into a standard variable.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>def calculate_total_cost(price, tax_rate):
+    total = price + (price * tax_rate)
+    return total <span class="code-comment"># Hands the math result back to the script</span>
+
+<span class="code-comment"># Running the calculation and saving the answer into a variable</span>
+final_invoice = calculate_total_cost(50, 0.10)
+print(final_invoice) <span class="code-comment"># This outputs: 55.0</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. The Argument Mismatch & Scope Error Traps</h2>
+    <p class="intro-text">
+      Managing independent functions introduces two major traps that beginners stumble into during web tool deployment:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>Argument Mismatch Errors:</strong> If you configure a function to accept exactly two parameters (like <code>price</code> and <code>tax_rate</code> above), you *must* pass exactly two arguments when calling it. If you pass only one argument, or try to pass three, Python will throw a severe <code>TypeError</code> crash warning.
+      </li>
+      <li>
+        ⚠️ <strong>The Local Scope Variable Trap:</strong> Any variables you create *inside* an indented function block live exclusively inside that function block. If you try to print or use a function variable in your main code outside the function, Python won't be able to find it and will drop a <code>NameError</code>.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Function Practice</h2>
+    <p class="intro-text">
+      Let's lock in your foundational skills! Open up your local text editor environment and attempt this final coding challenge:
+      Define a custom function named <code>multiply_numbers</code> that accepts two parameters called <code>num1</code> and <code>num2</code>. 
+      Inside the function block, write a line of code that multiplies both variables together and uses the <code>return</code> keyword to send the final math calculation back. 
+      Call the function with two numbers, save the output into a variable named <code>answer</code>, and print it to your terminal screen.
+    </p>
+        <div class="py-cta-container" style="float: right;">
+            <a href="congratulations.html" class="py-btn-start">Congratulations</a>
+        </div>
+  </div>
+
+</body>
+</html>
