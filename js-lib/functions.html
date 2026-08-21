@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript Functions - Beginner Tutorial</title>
+    <link rel="stylesheet" href="../css/js-style.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">JavaScript Functions Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: THE CORE CONCEPT -->
+    <h2>➡️ 1. What is a Function in JavaScript?</h2>
+    <p class="intro-text">
+      As you write larger and more complex scripts for websites, you will quickly notice that you start rewriting the exact same patterns of code. For instance, if you need to calculate sales tax on an e-commerce price, update a user profile profile box, or format strings for a text layout, repeating those instructions over and over across multiple files makes your application bloated and highly frustrating to maintain.
+    </p>
+    <p class="intro-text">
+      To streamline your architecture, programming introduces <strong>Functions</strong>. A function is an isolated, reusable block of instructions designed to perform a specific task. Think of a function like an automated coffee maker. You configure the machine parameters once, and whenever you need a fresh cup, you don't build a new machine from scratch—you simply pass it your ingredients, press a button, and get a reliable result back.
+    </p>
+
+    <!-- SECTION 2: SYNTAX STRUCTURE -->
+    <h2>➡️ 2. Declaring and Invoking a Function</h2>
+    <p class="intro-text">
+      To build a standard function in JavaScript, use the <code>function</code> keyword, state a clear, descriptive function name, attach a set of parameters inside parentheses <code>( )</code>, and group your active execution code tightly inside **curly braces <code>{ }</code>**.
+    </p>
+    <p class="intro-text">
+      Declaring a function only saves the recipe inside the computer's memory. To actually run or execute that code line later, you must "invoke" or call it by typing the function name followed by parentheses.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment">// 1. Declaring the reusable function framework block</span>
+function triggerSecurityAlert() {
+    console.log("===============================");
+    console.log("ALERT: Unauthorized access block logged!");
+    console.log("===============================");
+}
+
+<span class="code-comment">// 2. Invoking the function block to run on demand</span>
+triggerSecurityAlert();
+triggerSecurityAlert(); <span class="code-comment">// Re-runs instantly!</span></code></pre>
+    </div>
+
+    <!-- SECTION 3: INPUT ARGUMENTS -->
+    <h2>➡️ 3. Passing Data via Parameters and Arguments</h2>
+    <p class="intro-text">
+      Functions become incredibly flexible when you pass external inputs into them. You can configure a function to accept temporary tracking variables by dropping placeholder values inside the parentheses. These placeholder names are called <strong>parameters</strong>.
+    </p>
+    <p class="intro-text">
+      When you call the function later, you feed the real-world values (called <strong>arguments</strong>) straight into those parentheses slots, letting the function compute custom results dynamically.
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment">// 'webUser' acts as the custom input placeholder parameter</span>
+function welcomeVisitor(webUser) {
+    console.log("Dashboard system unlocked. Welcome, " + webUser + "!");
+}
+
+<span class="code-comment">// Passing raw data values as arguments to the parameters</span>
+welcomeVisitor("Sarah_Dev"); <span class="code-comment">// Outputs: Dashboard system unlocked. Welcome, Sarah_Dev!</span>
+welcomeVisitor("Alex_Core");  <span class="code-comment">// Outputs: Dashboard system unlocked. Welcome, Alex_Core!</span></code></pre>
+    </div>
+
+    <!-- SECTION 4: THE RETURN KEYWORD -->
+    <h2>➡️ 4. Returning Values Back to the Main Script</h2>
+    <p class="intro-text">
+      Not all functions are meant to print text straight to the developer console log window. Often, you will want a function to perform calculations or clean data strings in the background and pass the final result back to the main track of your application.
+    </p>
+    <p class="intro-text">
+      To achieve this, use the <code>return</code> keyword. When JavaScript hits a return statement, it stops running the function immediately and hands the calculated data value back to the line that originally triggered it. This allows you to capture that answer directly inside a standard variable.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>function compoundMultiply(value1, value2) {
+    let composition = value1 * value2;
+    return composition; <span class="code-comment">// Hands the calculation result back</span>
+}
+
+<span class="code-comment">// Calling the code and saving the output into a new tracking block</span>
+let totalArea = compoundMultiply(5, 12);
+console.log(totalArea); <span class="code-comment">// This outputs: 60</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Variable Scope Errors & Parameter Mismatches</h2>
+    <p class="intro-text">
+      Isolating functional scopes requires managing tracking variables carefully to avoid frontend compilation blocks:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Local Scope Blockade:</strong> Any variables you declare inside a function's curly braces using <code>let</code> or <code>const</code> live strictly inside that specific box. If you attempt to access or console log a local function variable outside the curly braces, your browser will fail with a critical <code>ReferenceError</code>.
+      </li>
+      <li>
+        ⚠️ <strong>Missing Arguments:</strong> If your function expects two independent variables to perform math calculations, but you forget to pass the second argument when calling it, the missing parameter shifts to an <code>undefined</code> data state, causing your mathematical outputs to calculate out to <code>NaN</code> (Not a Number).
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Functional Architecture Practice</h2>
+    <p class="intro-text">
+      Let's build a functional machine! Open your browser script file and attempt this exercise:
+      Write a custom function named <code>verifyAge</code> that accepts a placeholder parameter called <code>userAge</code>. 
+      Inside the curly braces, combine an if/else conditional check that returns the string <code>"Allowed"</code> if the age variable is 18 or greater, and returns <code>"Blocked"</code> if it is lower. 
+      Invoke your function passing a real number, store the returned string inside a variable named <code>accessStatus</code>, and console log the results.
+    </p>
+
+    <div class="js-cta-container">
+            <a href="congratulations.html" class="js-btn-start">Next</a>
+        </div>
+  </div>
+
+  </div>
+
+</body>
+</html>
