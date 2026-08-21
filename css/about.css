@@ -1,0 +1,381 @@
+/* Academy About Layout Polish Styles */
+.academy-about-box {
+  max-width: 750px;
+  margin: 30px auto 50px auto; /* Centers the content card box beautifully on widescreen displays */
+}
+
+.core-pillars-list li {
+  margin-bottom: 18px; /* Adds clean spacing breaks between bullet descriptions */
+  line-height: 1.6;
+}
+
+.academy-action-row {
+  margin-top: 35px;
+}
+
+/* ==========================================================================
+   1. FRONTEND ARCHITECTURE & NEO-NEON DESIGN SYSTEM TOKENS
+   ========================================================================== */
+:root {
+  /* Ultra-Premium Glass Dark Palette Matrices */
+  --bg-dark-base: #030712;       /* Sleek custom pitch black-navy layout base */
+  --bg-glass-card: rgba(15, 23, 42, 0.45); 
+  --bg-glass-input: rgba(2, 6, 23, 0.6);
+  --bg-glass-terminal: rgba(2, 6, 23, 0.8);
+  
+  /* Vibrant Frontend Liquid Cyber Accents */
+  --neon-cyan: #06b6d4;
+  --neon-cyan-glow: rgba(6, 182, 212, 0.3);
+  --neon-purple: #a855f7;
+  --neon-purple-glow: rgba(168, 85, 247, 0.35);
+  --neon-gold: #f59e0b;
+  --neon-gold-glow: rgba(245, 158, 11, 0.35);
+  --neon-emerald: #10b981;
+  --neon-emerald-glow: rgba(16, 185, 129, 0.35);
+
+  /* Premium UI Text Typography Neutrals */
+  --text-pure: #ffffff;
+  --text-crisp: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #475569;
+  
+  /* Professional Layout Timing & Animations */
+  --cyber-transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --glass-border-shimmer: rgba(255, 255, 255, 0.07);
+}
+
+/* Base Body System Configuration */
+body {
+  background-color: var(--bg-dark-base);
+  color: var(--text-crisp);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  padding: 15px;
+  margin: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. REFACTORING HEADERS & BANNER GRID ENGINE
+   ========================================================================== */
+header {
+  background-image: url(/images/code.png);
+  height: 480px;
+  border-radius: 20px;
+  background-size: cover;       
+  background-position: center;   
+  background-repeat: no-repeat;
+  border: 1px solid var(--glass-border-shimmer);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.15); 
+  animation: kala 30s infinite;
+  transition: background-image 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+@keyframes kala {
+  0%, 100% { background-image: url(/images/code.png); }
+  25% { background-image: url(/images/computer.jpg); }
+  50% { background-image: url(/images/download.jpg); }
+  75% { background-image: url(/images/python_2.jpg); }
+}
+
+/* ==========================================================================
+   3. MODERN NAVBAR GLASSMORPHISM NAVIGATION COMPONENT
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 40px;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px 20px 0 0;
+}
+
+.nav-logo {
+  color: var(--text-pure);
+  font-size: 20px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: var(--cyber-transition);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+  color: var(--text-pure);
+  background-color: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.active-page-glow {
+  background-color: rgba(6, 182, 212, 0.06) !important;
+  border-color: rgba(6, 182, 212, 0.3) !important;
+  color: var(--neon-cyan) !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+/* ==========================================================================
+   4. PRESENTATION CONTENT CARDS & TYPOGRAPHY LOGIC
+   ========================================================================== */
+.qwerty {
+  text-align: center;
+  color: var(--text-pure);
+  font-weight: 800;
+  font-size: 32px;
+  margin-top: 30px;
+  letter-spacing: -0.5px;
+}
+
+/* Main Translucent Glass Box Card Setup */
+.content-box, .glass-contact-box {
+  background: var(--bg-glass-card); 
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid var(--glass-border-shimmer); 
+  border-radius: 16px;
+  padding: 35px; 
+  margin-top: 25px; 
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content-box:hover {
+  transform: translateY(-2px);
+}
+
+/* Layout Page Dimension Adjustments */
+.personal-about-box, .academy-about-box { max-width: 740px; margin: 30px auto 60px auto; }
+.contact-wrapper { max-width: 600px; margin: 30px auto 50px auto; }
+
+h1, h2, h3 {
+  color: var(--text-pure);
+  font-weight: 700;
+  margin-top: 0;
+  letter-spacing: -0.3px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: var(--text-pure);
+}
+
+.intro-text {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 15.5px;
+  margin: 0 0 24px 0;
+}
+
+.center-text, .center-text-utility {
+  text-align: center;
+  max-width: 680px;
+  margin: 15px auto !important;
+}
+
+.section-title {
+  text-align: center;
+  margin: 35px 0 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 12px;
+}
+
+/* Web List Framework Layouts */
+.features-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.features-list li h3 {
+  font-size: 17px;
+  color: var(--text-crisp);
+  margin: 14px 0;
+}
+
+.personal-story-list li, .core-pillars-list li {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Ambient Vector Lighting System */
+.ambient-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.12;
+  z-index: -1;
+  pointer-events: none;
+}
+.glow-1 { top: 10%; left: -5%; background-color: var(--neon-cyan); }
+.glow-2 { bottom: 5%; right: -5%; background-color: var(--neon-purple); }
+
+/* ==========================================================================
+   5. REALISTIC PREMIUM SYNTAX EMULATOR (CODE SNIPPETS)
+   ========================================================================== */
+.code-snippet-box {
+  background-color: var(--bg-glass-terminal);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--neon-cyan);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 15px 0 30px 0;
+  overflow-x: auto;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.code-snippet-box code {
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  color: #e2e8f0;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.code-comment {
+  color: #4b5563;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   6. INTERACTIVE GLASS BUTTONS & FLOATING LABEL CONTROLLERS
+   ========================================================================== */
+.interactive-action-block, .button-centering-row, .form-submit-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  padding: 0;
+  background-color: transparent;
+  flex-wrap: wrap;
+}
+
+.academy-action-row, .personal-action-row { margin-top: 40px; }
+
+/* Main Button Structural Matrix */
+.action-trigger, .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 12px; 
+  transition: var(--cyber-transition);
+  letter-spacing: 0.3px;
+  border: none;
+  cursor: pointer;
+}
+
+.trigger-graphic, .send-icon-graphic {
+  width: 15px;
+  height: 15px;
+}
+
+.btn {
+  align-self: flex-end;
+  height: 44px;
+  padding: 0 24px;
+  margin-top: 20px;
+}
+
+/* SOLID GLOW CONSOLE BUTTON STYLE */
+.solid-accent, .btn-download {
+  background: linear-gradient(135deg, var(--neon-cyan) 0%, #0284c7 100%);
+  color: var(--bg-dark-base);
+  box-shadow: 0 4px 15px var(--neon-cyan-glow);
+}
+.solid-accent:hover, .btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+  filter: brightness(110%);
+}
+
+/* GLASS TRANSPARENT OUTLINE BUTTON STYLE */
+.outline-accent, .btn-link {
+  background-color: transparent;
+  color: var(--text-crisp);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.outline-accent:hover, .btn-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-pure);
+  transform: translateY(-2px);
+}
+
+.cyber-submit-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--neon-purple) 0%, #6b21a8 100%);
+  color: var(--text-pure);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--neon-purple-glow);
+  transition: var(--cyber-transition);
+}
+.cyber-submit-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+}
+
+/* SECURE WEB FORM TEXTBOX SYSTEM */
+.cybrix-form { display: flex; flex-direction: column; gap: 24px; margin-top: 25px; }
+.input-focus-group, .form-group-block { position: relative; margin-bottom: 28px; display: flex; flex-direction: column; }
+.form-group-block { margin-bottom: 0; gap: 6px; }
+
+.form-label-tag {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.form-input-element, .form-textarea-element, .glass-input-field, .glass-textarea-field {
+  background-color: var(--bg-glass-input) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--text-crisp);
+  outline: none;
+  transition: var(--cyber-transition);
+}
+
+.glass-input-field, .glass-textarea-field {
+  padding: 18px 14px 8px 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input-element:focus, .form-textarea-element:focus {
+  border-color: var(--neon-cyan);
+}
