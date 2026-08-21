@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript Variables - Beginner Tutorial</title>
+    <link rel="stylesheet" href="../css/js-style.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">JavaScript Variables Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is a Variable in JavaScript?</h2>
+    <p class="intro-text">
+      In web development, a <strong>variable</strong> is a foundational container used to store data values that your website can use, change, or update dynamically. Think of a variable as a labeled storage box. If you want your website to remember a visitor's name, their current shopping cart score, or whether they are logged in, you pack that data into a memory box and slap a clean label on it.
+    </p>
+    <p class="intro-text">
+      While Python lets you create variables by just typing their name, JavaScript requires you to explicitly declare that you are creating a new variable using special keyword keywords. JavaScript is also a **dynamically typed language**, meaning a single box can hold numbers, text strings, or logical states without you needing to pre-define the data type layout.
+    </p>
+
+    <!-- SECTION 2: THE THREE KEYWORDS -->
+    <h2>➡️ 2. Declaring Variables: let, const, and var</h2>
+    <p class="intro-text">
+      Modern JavaScript provides three unique keywords to create storage containers. Choosing the right keyword dictates how your data can behave over time:
+    </p>
+    <ul class="features-list">
+      <li>
+        <strong><code>let</code></strong> — Used for variables whose values are expected to change or vary later (like a player's score or a countdown timer).
+      </li>
+      <li>
+        <strong><code>const</code></strong> — Short for *constant*. Use this for values that should be securely locked and can never be overwritten (like a math tax rate or a database server URL).
+      </li>
+      <li>
+        <strong><code>var</code></strong> — The old, legacy keyword from early web development. It is highly recommended to **avoid using var** in modern projects because it causes accidental bugs due to loose structural rules.
+      </li>
+    </ul>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment">// Declaring changeable and constant data streams</span>
+let digitalScore = 250;
+const frameworkName = "JavaScript";
+
+<span class="code-comment">// Outputting the information directly to the browser console</span>
+console.log(digitalScore);
+console.log(frameworkName);</code></pre>
+    </div>
+
+    <!-- SECTION 3: STEP-BY-STEP BREAKDOWN -->
+    <h2>➡️ 3. Line-by-Line Execution Breakdown</h2>
+    <p class="intro-text">
+      Let's look at exactly what happens inside your browser's V8 engine layout when the script above runs:
+    </p>
+    <ul class="features-list">
+      <li>
+        <strong>Line 1: <code>let digitalScore = 250;</code></strong> — The keyword <code>let</code> tells the browser to allocate a fresh, mutable memory slot. It maps the label <code>digitalScore</code> to that slot and populates it with the integer <code>250</code>. Note the trailing semicolon <code>;</code> used to end statements cleanly.
+      </li>
+      <li>
+        <strong>Line 2: <code>const frameworkName = "JavaScript";</code></strong> — This establishes an immutable constant block. Because it uses double quotes around <code>"JavaScript"</code>, the browser processes it as a String data type and locks the container from any future adjustments.
+      </li>
+      <li>
+        <strong>Line 4-5: <code>console.log()</code></strong> — This is JavaScript's version of Python's <code>print()</code> function. It pushes whatever data is held inside the targeted variable straight to your browser's inspect element console tool window.
+      </li>
+    </ul>
+
+    <!-- SECTION 4: MODIFYING MUTABLE DATA -->
+    <h2>➡️ 4. Overwriting Variable Values</h2>
+    <p class="intro-text">
+      If you declared a variable using the <code>let</code> keyword, you can easily alter its interior contents as your application logic runs. However, notice that when you overwrite a variable, you **do not** re-type the keyword!
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>let userTokens = 10;
+console.log(userTokens); <span class="code-comment">// Outputs: 10</span>
+
+<span class="code-comment">// Updating the value (No 'let' keyword needed here!)</span>
+userTokens = 35;
+console.log(userTokens); <span class="code-comment">// Outputs: 35</span>
+
+<span class="code-comment">// Modifying the variable relative to itself</span>
+userTokens = userTokens + 5;
+console.log(userTokens); <span class="code-comment">// Outputs: 40</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Mistakes that Crash JavaScript Applications</h2>
+    <p class="intro-text">
+      Web browsers are strict when compiling script logic. Watch out for these common beginner errors to keep your code running cleanly:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Constant Assignment Error:</strong> If you try to update a variable that was declared with <code>const</code> (e.g., writing <code>frameworkName = "React";</code>), your browser will halt execution entirely and throw a severe <code>TypeError: Assignment to constant variable</code> crash warning.
+      </li>
+      <li>
+        ⚠️ <strong>CamelCase Naming Rules:</strong> JavaScript developers use a naming style called **camelCase** for legal labels. The first word is lowercase, and every word after it starts with a capital letter (e.g., <code>totalUserAge</code>). Spaces, hyphens, and starting labels with numbers are strictly illegal.
+      </li>
+      <li>
+        ⚠️ <strong>The ReferenceError Trap:</strong> JavaScript cannot guess variable names. If you accidentally misspell a word or try to look up a variable before declaring it with a keyword, your script will break with a <code>ReferenceError</code>.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Frontend Practice</h2>
+    <p class="intro-text">
+      Let's write some frontend script logic! Open your code editor and attempt this challenge:
+      Create a mutable variable named <code>websiteViews</code> using the correct keyword and assign it an initial number. 
+      On the next line, update the variable by adding 100 to its current value. 
+      Finally, create a constant variable named <code>developerName</code>, set it to your name as a string, and pass both variables to <code>console.log()</code> statements.
+    </p>
+        <!-- Get Started Button Area -->
+        <div class="js-cta-container">
+            <a href="arrays.html" class="js-btn-start">Arrays</a>
+        </div>
+  </div>
+
+</body>
+</html>
