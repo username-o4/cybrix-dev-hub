@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Loops Guide: For vs. While Loops Tutorial</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python For vs. While Loops Compared</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: THE CORE DIFFERENCE -->
+    <h2>➡️ 1. The Two Types of Python Loops</h2>
+    <p class="intro-text">
+      In programming, loops are designed to automate repetitive tasks so you do not have to write the same line of code over and over again. Python gives us two primary loops to achieve this: the <strong>For Loop</strong> and the <strong>While Loop</strong>. 
+    </p>
+    <p class="intro-text">
+      While both loops repeat code, they serve completely different purposes. A <strong>For Loop</strong> is a *definite* loop—it is used when you know exactly how many times you want to run the code upfront (like counting from 1 to 10 or looping through an array of 5 elements). A <strong>While Loop</strong> is an *indefinite* loop—it repeats an action over and over again for an unknown number of times until a specific condition changes.
+    </p>
+
+    <!-- SECTION 2: FOR LOOP BLUEPRINT -->
+    <h2>➡️ 2. The For Loop: Iterating Over Known Sets</h2>
+    <p class="intro-text">
+      The For Loop steps through an existing collection of data elements line-by-line automatically. It knows exactly where the collection starts and where it ends, shutting itself down safely the moment the last item is processed.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Iterating through a fixed list of network security nodes</span>
+nodes = ["Node_A", "Node_B", "Node_C"]
+
+for node in nodes:
+    print("Scanning data traffic on:")
+    print(node)</code></pre>
+    </div>
+
+    <!-- SECTION 3: WHILE LOOP BLUEPRINT -->
+    <h2>➡️ 3. The While Loop: Running Until Conditions Change</h2>
+    <p class="intro-text">
+      The While Loop behaves more like an ongoing conditional check. It checks a logical condition first. If that condition is true, it executes the code block below it. It will continue cycling back up and rerunning that block until the condition finally becomes false.
+    </p>
+    <p class="intro-text">
+      Unlike For Loops, you have to manage a counter variable manually inside a While Loop to change the state, or else the loop will run forever.
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Initializing a manual loop tracker variable</span>
+login_attempts = 1
+
+while login_attempts <= 3:
+    print("Checking security key...")
+    print(login_attempts)
+    
+    <span class="code-comment"># CRITICAL: Manually increasing the counter by 1</span>
+    login_attempts = login_attempts + 1</code></pre>
+    </div>
+
+    <!-- SECTION 4: REAL-WORLD COMPARISON -->
+    <h2>➡️ 4. Real-World Analogy: When to Use Which?</h2>
+    <p class="intro-text">
+      Choosing the correct loop layout keeps your software fast and easy to maintain. Think of these everyday scenarios to map out your logic choices:
+    </p>
+    <ul class="features-list">
+      <li>
+        <strong>Use a For Loop when:</strong> You are serving dinner to a table of 4 guests. You step through guest 1, guest 2, guest 3, and guest 4, then cleanly stop. The count is predictable.
+      </li>
+      <li>
+        <strong>Use a While Loop when:</strong> You are washing dirty dishes in a restaurant sink. You do not know how many plates will be brought to the back. You check the sink: *While* there are plates inside, keep scrubbing. When the sink is empty, you stop.
+      </li>
+    </ul>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. The Infinite Loop Trap</h2>
+    <p class="intro-text">
+      While Loops are highly powerful but introduce a severe hazard that beginners face constantly: the **Infinite Loop**.
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>Missing State Updates:</strong> Look back at the While Loop example above. If you forget to write that last line (<code>login_attempts = login_attempts + 1</code>), the value of <code>login_attempts</code> stays locked at <code>1</code> forever. Because 1 is always less than 3, the loop will print to your screen thousands of times per second until your computer freezes or crashes.
+      </li>
+      <li>
+        ⚠️ <strong>Incorrect Conditions:</strong> Setting a loop condition to a state that can never break (like writing <code>while True:</code> without an explicit internal <code>break</code> statement) creates a permanent background thread that hogs system hardware resources.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Multi-Loop Practice</h2>
+    <p class="intro-text">
+      Let's build a script that uses both loops to secure your knowledge base! Open your editor and try this exercise:
+      First, write a for loop that utilizes the <code>range(1, 4)</code> function to output the numbers 1, 2, and 3. 
+      Directly below that, recreate the exact same numerical 1 to 3 output using a while loop structure with a manual tracker variable named <code>counter</code>. Pay close attention to your indentation blocks!
+    </p>
+        <div class="py-cta-container" style="float: right;">
+            <a href="functions.html" class="py-btn-start">Functions</a>
+        </div>
+  </div>
+
+</body>
+</html>
