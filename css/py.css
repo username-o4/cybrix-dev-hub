@@ -81,3 +81,28 @@
   margin-top: 35px;
   font-size: 20px;
 }
+.py-btn-start {
+    display: inline-block;
+    background-color: transparent;
+    color: #00ff88;
+    border: 2px solid #00ff88;
+    padding: 1.1rem 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease-in-out;
+}
+
+.py-btn-start:hover {
+    background-color: #00ff88;
+    color: #0f172a;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+    transform: scale(1.03);
+}
+
+.py-btn-start:active {
+    transform: scale(1);
+}
