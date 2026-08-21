@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Python List Indexing - Zero-Based Counting</title>
+    <link rel="stylesheet" href="/css/python.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">Python List Indexing & Zero-Based Counting</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: THE CORE CONCEPT -->
+    <h2>➡️ 1. Why Programming Starts Counting at 0</h2>
+    <p class="intro-text">
+      When humans count a row of physical items, we naturally start with the number one. If you have four objects sitting on a desk, you label them 1, 2, 3, and 4. However, inside your computer's memory hardware, programming languages view lists and arrays quite differently. In Python, counting positions **always starts at 0**. 
+    </p>
+    <p class="intro-text">
+      This location identifier number is called an <strong>index</strong>. The reason computers start tracking memory addresses at zero comes down to how hardware calculations run beneath the surface. The index number isn't actually a count of how many items exist—it is an <em>offset distance</em> calculated from the very beginning of the memory block where your list is stored. The very first item sits right at the starting line, meaning its offset distance from the beginning is exactly 0.
+    </p>
+
+    <!-- SECTION 2: THE VISUAL TRACKING MAP -->
+    <h2>➡️ 2. Visual Index Map Profile</h2>
+    <p class="intro-text">
+      To help visualize how Python maps out array components in the background, look at how a simple list tracking three core database items is mapped across positive indices:
+    </p>
+    
+    <!-- Text-based clean visual structure map -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># The underlying data structure mapping:</span>
+languages = [ "Python" , "JavaScript" , "Rust" ]
+                 ⬇️             ⬇️          ⬇️
+<span class="code-comment"># Human view:   1st Item       2nd Item    3rd Item</span>
+<span class="code-comment"># Python Index:    0              1           2</span></code></pre>
+    </div>
+
+    <!-- SECTION 3: EXTRACTING VALUES VIA LOGIC -->
+    <h2>➡️ 3. Extracting and Accessing Specific Positions</h2>
+    <p class="intro-text">
+      To pull out an isolated data asset from a list, write the variable name of your array followed by the target index position number wrapped tightly inside square brackets <code>[ ]</code>. 
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment"># Initializing our main sports array profile</span>
+favorite_sports = ["Soccer", "Basketball", "Tennis", "Baseball"]
+
+<span class="code-comment"># Extracting the 1st position (Index 0)</span>
+print(favorite_sports[0])  <span class="code-comment"># This outputs: Soccer</span>
+
+<span class="code-comment"># Extracting the 3rd position (Index 2)</span>
+print(favorite_sports[2])  <span class="code-comment"># This outputs: Tennis</span>
+
+<span class="code-comment"># Saving a specific index element inside a standard variable</span>
+selected_sport = favorite_sports[1]
+print(selected_sport)      <span class="code-comment"># This outputs: Basketball</span></code></pre>
+    </div>
+
+    <!-- SECTION 4: BACKWARDS LOOKUP (NEGATIVE INDEXING) -->
+    <h2>➡️ 4. Navigating Arrays Backwards</h2>
+    <p class="intro-text">
+      Python includes a powerful built-in index mechanism called <strong>negative indexing</strong>. This lets you read elements from a list starting from the very end and moving backward toward the front. 
+    </p>
+    <p class="intro-text">
+      When moving backward, counting does not start at zero (since negative zero is just zero). Instead, an index value of <code>-1</code> instantly captures the final item in the collection, <code>-2</code> grabs the second-to-last item, and it keeps decrementing downward. This is incredibly helpful when managing large data sets where you don't know the overall list length.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>secure_nodes = ["Node_A", "Node_B", "Node_C", "Node_D"]
+
+<span class="code-comment"># Grabbing the absolute end of the array string line</span>
+print(secure_nodes[-1])  <span class="code-comment"># This outputs: Node_D</span>
+
+<span class="code-comment"># Moving back two spaces from the end line block</span>
+print(secure_nodes[-3])  <span class="code-comment"># This outputs: Node_B</span></code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. The Off-By-One Trap & Index Errors</h2>
+    <p class="intro-text">
+      The mismatch between how humans count and how computers count leads to one of the most common coding mistakes in software engineering: the **Off-by-One Error**.
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Severe IndexError:</strong> If you build an array tracking 4 elements, the only valid indices your script can use are <code>0</code>, <code>1</code>, <code>2</code>, and <code>3</code>. If you accidentally try to read index <code>4</code> (thinking it means the 4th item), your application will halt execution entirely and throw a critical <code>IndexError: list index out of range</code> crash warning.
+      </li>
+      <li>
+        ⚠️ <strong>Empty List Vulnerabilities:</strong> Attempting to read index <code>0</code> on a completely empty list layout (<code>[]</code>) will also result in an immediate application crash, because no zero-index memory space has been created yet.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Index Practice</h2>
+    <p class="intro-text">
+      Let's test your understanding! Open up your local text editor environment and attempt this coding problem:
+      Create an array variable named <code>servers</code> containing three string values: <code>"Alpha"</code>, <code>"Beta"</code>, and <code>"Gamma"</code>. 
+      Write a print statement that uses index tracking to output <code>"Alpha"</code> to the console screen. 
+      Directly below that, write a second print statement that uses negative index structures to output <code>"Gamma"</code> without using a positive number.
+    </p>
+        <div class="py-cta-container" style="float: right;">
+            <a href="dictionaries.html" class="py-btn-start">Dictionaries</a>
+        </div>
+  </div>
+
+</body>
+</html>
