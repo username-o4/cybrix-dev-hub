@@ -1,0 +1,103 @@
+* Reset margins and ensure the page takes up full height */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevents unwanted scrollbars */
+}
+
+/* Force the video to take up the entire screen behind content */
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Forces video to crop and scale perfectly like a background image */
+    z-index: -1; /* Pushes the video layer underneath text elements */
+}
+
+/* Position text content over the top of the video layer */
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff; /* White text for clear visibility against dark animations */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Drop shadow helps read text over busy video frames */
+}
+
+h1 {
+    font-size: 3rem;
+    margin:0;
+}
+
+footer{
+padding:10px ;
+}
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Pushes logo to left, links to right */
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.4); /* Transparent dark backing to make text readable */
+    backdrop-filter: blur(5px); /* Soft blur effect on the video beneath the bar */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Horizontal Link List Alignment */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Even spacing between links */
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Hover Interactive State */
+.nav-links a:hover {
+    color: #00ffcc; /* Bright accent color when user hovers mouse */
+}
+.class{
+    height: 120px; /* Increased slightly from 55px so your face/logo is clearly visible */
+    width: 120px;  /* Width must match height EXACTLY to create a perfect circle */
+    border-radius: 50%; /* Cuts corners into a flawless round circle */
+    object-fit: cover; /* ⚠️ CRUCIAL: Stops the image from squishing or stretching out of shape */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Drops a shadow so it pops off the video background */
+    display: block;
+}
+
+.btn{
+background-color: rgb(2, 2, 36);
+padding:10px ;
+font-size:25px ;
+color:white;
+font-family:sans-serif ;
+margin: auto;
+border-radius:10px ;
+width:155px ;
+height:55px ;
+justify-content: center;
+align-items: center;
+display: flex;
+}
