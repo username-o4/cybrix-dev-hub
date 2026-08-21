@@ -3,303 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML & CSS Quiz (20 Questions)</title>
+    <title>Select Your Programming Quiz</title>
     <style>
-        /* Base Reset & Variables */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         :root {
-            --primary-color: #4a90e2;
-            --success-color: #2ecc71;
-            --error-color: #e74c3c;
-            --bg-color: #f5f7fb;
+            --bg-color: #f4f6f9;
+            --text-color: #2d3748;
             --card-bg: #ffffff;
-            --text-color: #333333;
+            --border-color: #e2e8f0;
+            --html-color: #e34c26;
+            --css-color: #264de4;
+            --python-color: #306998;
+            --btn-hover: #4a5568;
         }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            box-sizing: border-box;
         }
 
-        /* Quiz Container */
-        .quiz-container {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        .dashboard-container {
+            max-width: 800px;
             width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            margin-bottom: 24px;
-            color: #2c3e50;
-            font-size: 24px;
+            font-size: 2.2rem;
+            color: #1a202c;
+            margin-bottom: 10px;
         }
 
-        /* Score Tracker & Question */
-        .quiz-header {
+        .subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: #7f8c8d;
         }
 
-        .question-text {
-            font-size: 18px;
-            margin-bottom: 20px;
+        .quiz-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+
+        .badge.html {
+            background-color: #fceae6;
+            color: var(--html-color);
+        }
+
+        .badge.css {
+            background-color: #e8ecfc;
+            color: var(--css-color);
+        }
+
+        .badge.python {
+            background-color: #e2eef9;
+            color: var(--python-color);
+        }
+
+        .quiz-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+            color: #1a202c;
+        }
+
+        .quiz-card p {
+            margin: 0 0 25px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
             line-height: 1.5;
         }
 
-        /* Option Buttons */
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .option-btn {
-            background-color: #f8f9fa;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 14px 20px;
-            font-size: 16px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 100%;
-        }
-
-        .option-btn:hover:not([disabled]) {
-            background-color: #edf2f7;
-            border-color: var(--primary-color);
-        }
-
-        /* State Classes managed via JS */
-        .option-btn.correct {
-            background-color: #d4edda !important;
-            border-color: var(--success-color) !important;
-            color: #155724;
-        }
-
-        .option-btn.wrong {
-            background-color: #f8d7da !important;
-            border-color: var(--error-color) !important;
-            color: #721c24;
-        }
-
-        /* Controls */
-        .controls {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .next-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            display: none; /* Hidden until answer is selected */
-        }
-
-        .next-btn:hover {
-            background-color: #357abd;
-        }
-
-        /* Results Section */
-        .result-screen {
+        .start-link {
+            display: block;
             text-align: center;
-            display: none;
-        }
-
-        .result-screen h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .score-text {
-            font-size: 20px;
-            margin-bottom: 24px;
-        }
-
-        .restart-btn {
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px;
             border-radius: 6px;
-            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+
+        /* Specific card button colors */
+        .quiz-card.html-card .start-link {
+            background-color: var(--html-color);
+        }
+        .quiz-card.html-card .start-link:hover {
+            background-color: #b83b1e;
+        }
+
+        .quiz-card.css-card .start-link {
+            background-color: var(--css-color);
+        }
+        .quiz-card.css-card .start-link:hover {
+            background-color: #1f3eb8;
+        }
+
+        .quiz-card.py-card .start-link {
+            background-color: var(--python-color);
+        }
+        .quiz-card.py-card .start-link:hover {
+            background-color: #234f75;
         }
     </style>
 </head>
 <body>
 
-    <div class="quiz-container">
-        <!-- Active Quiz UI -->
-        <div id="quiz-box">
-            <div class="quiz-header">
-                <span id="question-counter">Question 1 of 20</span>
-                <span id="score-counter">Score: 0</span>
+<div class="dashboard-container">
+    <h1>Developer Challenge Center</h1>
+    <p class="subtitle">Select the topic you want to test your skills on today</p>
+
+    <div class="quiz-grid">
+        <!-- HTML Card -->
+        <div class="quiz-card html-card">
+            <div>
+                <span class="badge html">HTML5</span>
+                <h3>HTML Quiz</h3>
+                <p>Test your knowledge on web structure, semantic tags, attributes, links, images, and form elements layout structure.</p>
             </div>
-            <div class="question-text" id="question-text">
-                Loading question...
-            </div>
-            <div class="options-container" id="options-container">
-                <!-- Buttons dynamically loaded by JS -->
-            </div>
-            <div class="controls">
-                <button class="next-btn" id="next-btn">Next Question</button>
-            </div>
+            <!-- Update the href link below with your HTML quiz URL -->
+            <a href="html-quiz.html" class="start-link">Take HTML Quiz</a>
         </div>
 
-        <!-- End Game Screen -->
-        <div id="result-box" class="result-screen">
-            <h2>Quiz Completed!</h2>
-            <p class="score-text">You scored <span id="final-score">0</span> out of <span id="total-questions">0</span></p>
-            <button class="restart-btn" id="restart-btn">Restart Quiz</button>
+        <!-- CSS Card -->
+        <div class="quiz-card css-card">
+            <div>
+                <span class="badge css">CSS3</span>
+                <h3>CSS Quiz</h3>
+                <p>Challenge your styling skills covering selectors, specificity, box model, Flexbox layout, Grid systems, and colors properties.</p>
+            </div>
+            <!-- Update the href link below with your CSS quiz URL -->
+            <a href="css-quiz.html" class="start-link">Take CSS Quiz</a>
+        </div>
+
+        <!-- Python Card -->
+        <div class="quiz-card py-card">
+            <div>
+                <span class="badge python">Python</span>
+                <h3>Python Quiz</h3>
+                <p>Evaluate your foundational core python knowledge covering variables, basic data structures, syntax, loops, and conditional rules rules.</p>
+            </div>
+            <!-- Update the href link below with your Python quiz URL -->
+            <a href="python-quiz.html" class="start-link">Take Python Quiz</a>
         </div>
     </div>
+</div>
 
-    <script>
-        // Quiz Questions Data Structure
-        const quizData = [
-            // --- 10 HTML Questions ---
-            {
-                question: "What does HTML stand for?",
-                options: [
-                    "Hyper Text Markup Language",
-                    "Home Tool Markup Language",
-                    "Hyperlinks and Text Measurement Language",
-                    "Hyper Tool Market Language"
-                ],
-                correct: 0
-            },
-            {
-                question: "Which HTML element is used for the largest heading?",
-                options: ["<h6>", "<heading>", "<h1>", "<head>"],
-                correct: 2
-            },
-            {
-                question: "What is the correct HTML element for inserting a line break?",
-                options: ["<br>", "<lb>", "<break>", "<line>"],
-                correct: 0
-            },
-            {
-                question: "Which character is used to indicate an end tag in HTML?",
-                options: ["*", "<", "^", "/"],
-                correct: 3
-            },
-            {
-                question: "Which attribute is used to provide an alternative text for an image if it cannot be displayed?",
-                options: ["title", "alt", "src", "longdesc"],
-                correct: 1
-            },
-            {
-                question: "What is the correct HTML for creating a hyperlink?",
-                options: [
-                    "<a href='http://example.com'>Example</a>",
-                    "<a url='http://example.com'>Example</a>",
-                    "<a>http://example.com</a>",
-                    "<link href='http://example.com'>Example</link>"
-                ],
-                correct: 0
-            },
-            {
-                question: "Which HTML element is used to define an unordered list?",
-                options: ["<ol>", "<ul>", "<list>", "<dl>"],
-                correct: 1
-            },
-            {
-                question: "Which HTML element defines a table row?",
-                options: ["<td>", "<th>", "<row>", "<tr>"],
-                correct: 3
-            },
-            {
-                question: "In HTML, which element is used to define important text structurally?",
-                options: ["<important>", "<b>", "<strong>", "<i>"],
-                correct: 2
-            },
-            {
-                question: "Which HTML5 element is used to display a distinct, self-contained article on a page?",
-                options: ["<section>", "<article>", "<aside>", "<body>"],
-                correct: 1
-            },
-
-            // --- 10 CSS Questions ---
-            {
-                question: "What does CSS stand for?",
-                options: [
-                    "Creative Style Sheets",
-                    "Computer Style Sheets",
-                    "Cascading Style Sheets",
-                    "Colorful Style Sheets"
-                ],
-                correct: 2
-            },
-            {
-                question: "Which CSS property is used to change the text color of an element?",
-                options: ["text-color", "fgcolor", "color", "font-color"],
-                correct: 2
-            },
-            {
-                question: "Which CSS property controls the text size?",
-                options: ["font-style", "text-size", "font-size", "text-style"],
-                correct: 2
-            },
-            {
-                question: "What is the correct CSS syntax to make all the <p> elements bold?",
-                options: [
-                    "p {font-weight: bold;}",
-                    "p {text-size: bold;}",
-                    "<p style='font-size: bold;'>",
-                    "p {font: bold;}"
-                ],
-                correct: 0
-            },
-            {
-                question: "How do you select an element with the id 'demo' in CSS?",
-                options: [".demo", "#demo", "demo", "*demo"],
-                correct: 1
-            },
-            {
-                question: "How do you select elements with the class name 'test' in CSS?",
-                options: ["#test", "*test", "test", ".test"],
-                correct: 3
-            },
-            {
-                question: "Which CSS property is used to change the left margin of an element?",
-                options: ["padding-left", "margin-left", "indent-left", "margin: left;"],
-                correct: 1
-            },
-            {
-                question: "In the CSS Box Model, which property creates space outside of an element's border?",
-                options: ["padding", "margin", "spacing", "content"],
-                correct: 1
-            },
-            {
-                question: "Which CSS property is used to display a border around an element?",
-                options: ["border-style", "border-width", "border-color", "border"],
-                correct: 3
-            },
-            {
+</body>
+</html>
