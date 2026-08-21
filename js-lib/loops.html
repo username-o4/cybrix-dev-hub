@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript Loops - Beginner Tutorial</title>
+    <link rel="stylesheet" href="../css/js-style.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">JavaScript Loops Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What is a Loop in JavaScript?</h2>
+    <p class="intro-text">
+      In our previous tutorials, we explored how arrays store lists of related data assets, like product catalogs or active user profiles. But as a software developer, your code will frequently need to touch every item in those collections to run calculations, format text, or update items on a web page. Typing out individual code lines for each index position is repetitive and highly inefficient.
+    </p>
+    <p class="intro-text">
+      To solve this, JavaScript provides <strong>Loops</strong>. Loops are automation tools that let you cycle through your data arrays and repeat blocks of code dynamically. Instead of manual code lines, a loop automatically tells your browser: "Take this instruction block and repeat it for every item found in this collection until you reach the end."
+    </p>
+
+    <!-- SECTION 2: THE FOR LOOP SYNTAX -->
+    <h2>➡️ 2. The Standard For Loop Structure</h2>
+    <p class="intro-text">
+      The standard <code>for</code> loop is the most common iteration structure on the web. Unlike Python's compact layout, a classic JavaScript for loop requires you to declare three distinct control statements inside parentheses, separated by semicolons <code>;</code>:
+    </p>
+    <ul class="features-list">
+      <li><strong>Initialization:</strong> Sets up a tracker variable to count your loop runs (usually written as <code>let i = 0;</code>).</li>
+      <li><strong>Condition:</strong> The boundary check that keeps the loop spinning as long as it remains true (like <code>i &lt; 5;</code>).</li>
+      <li><strong>Increment:</strong> Increases your tracker counter variable by 1 on every pass (written as <code>i++</code>).</li>
+    </ul>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment">// Scanning an array of web framework modules</span>
+let coreLanguages = ["JavaScript", "HTML", "CSS"];
+
+for (let i = 0; i &lt; coreLanguages.length; i++) {
+    console.log("Analyzing resource file...");
+    console.log(coreLanguages[i]); <span class="code-comment">// Uses 'i' as a dynamic index counter</span>
+}</code></pre>
+    </div>
+
+    <!-- SECTION 3: THE WHILE LOOP ALTERNATIVE -->
+    <h2>➡️ 3. The While Loop Conditional Flow</h2>
+    <p class="intro-text">
+      The <strong>While Loop</strong> handles iteration slightly differently. It skips the three-step statement setup and simply tracks a single conditional rule. As long as that condition evaluates down to <code>true</code>, the loop will spin. 
+    </p>
+    <p class="intro-text">
+      While loops are ideal when you don't know exactly how many times a script needs to run in advance (like watching for a network server handshake response or a user click interaction).
+    </p>
+
+    <div class="code-snippet-box">
+      <pre><code>let continuousCount = 1;
+
+while (continuousCount &lt;= 3) {
+    console.log("Processing execution pass: " + continuousCount);
+    
+    <span class="code-comment">// CRITICAL: Manually update the tracking state variable</span>
+    continuousCount++;
+}</code></pre>
+    </div>
+
+    <!-- SECTION 4: DEFLATING DATA VULNERABILITIES -->
+    <h2>➡️ 4. Real-World Selection: For vs. While Loops</h2>
+    <p class="intro-text">
+      Knowing when to use each style keeps your web engines responsive and clean. Think of these day-to-day analogies to direct your code architecture designs:
+    </p>
+    <ul class="features-list">
+      <li>
+        <strong>Choose a For Loop when:</strong> You are handing out nametags to a known line of exactly 5 people. You know exactly when your tasks start and end.
+      </li>
+      <li>
+        <strong>Choose a While Loop when:</strong> You are checking a website inbox for unread support tickets. You don't know how many tickets are coming in, so you tell the app: *While* tickets exist, keep scanning.
+      </li>
+    </ul>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. The Infinite Loop Trap & Execution Crashes</h2>
+    <p class="intro-text">
+      Automated loops require clean boundaries to prevent critical memory leaks inside internet browsers:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Infinite Loop Freeze:</strong> If you write a while loop but forget to step up your tracking counter (like omitting <code>continuousCount++;</code>), your loop condition stays true forever. The browser will run the loop millions of times per second, locking up the user's tab or freezing the device completely.
+      </li>
+      <li>
+        ⚠️ <strong>Off-By-One Index Misses:</strong> Remember that array items start counting at index 0. If an array has a length of 3, the highest valid index position is 2. Setting a condition to check for <code>i &lt;= array.length</code> will accidentally look up an empty 3rd slot, outputting <code>undefined</code>.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Iteration Loop Practice</h2>
+    <p class="intro-text">
+      Let's practice! Open up your local development workspace script file and try this exercise:
+      Create an array variable named <code>shoppingCart</code> containing three product text strings (such as <code>"Laptop"</code>, <code>"Mouse"</code>, and <code>"Keyboard"</code>). 
+      Write a complete <code>for</code> loop block that steps through your array container using its <code>.length</code> boundary rule and prints out a message stating <code>"Item in cart: [product name]"</code> to the log console.
+    </p>
+     <div class="js-cta-container">
+            <a href="functions.html" class="js-btn-start">Functions</a>
+        </div>
+  </div>
+  </div>
+
+</body>
+</html>
