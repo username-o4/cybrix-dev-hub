@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML & CSS Quiz</title>
+    <title>HTML & CSS Quiz (20 Questions)</title>
     <style>
         /* Base Reset & Variables */
         * {
@@ -159,7 +159,7 @@
         <!-- Active Quiz UI -->
         <div id="quiz-box">
             <div class="quiz-header">
-                <span id="question-counter">Question 1 of 3</span>
+                <span id="question-counter">Question 1 of 20</span>
                 <span id="score-counter">Score: 0</span>
             </div>
             <div class="question-text" id="question-text">
@@ -184,6 +184,7 @@
     <script>
         // Quiz Questions Data Structure
         const quizData = [
+            // --- 10 HTML Questions ---
             {
                 question: "What does HTML stand for?",
                 options: [
@@ -195,125 +196,110 @@
                 correct: 0
             },
             {
-                question: "Which CSS property is used to change the background color?",
+                question: "Which HTML element is used for the largest heading?",
+                options: ["<h6>", "<heading>", "<h1>", "<head>"],
+                correct: 2
+            },
+            {
+                question: "What is the correct HTML element for inserting a line break?",
+                options: ["<br>", "<lb>", "<break>", "<line>"],
+                correct: 0
+            },
+            {
+                question: "Which character is used to indicate an end tag in HTML?",
+                options: ["*", "<", "^", "/"],
+                correct: 3
+            },
+            {
+                question: "Which attribute is used to provide an alternative text for an image if it cannot be displayed?",
+                options: ["title", "alt", "src", "longdesc"],
+                correct: 1
+            },
+            {
+                question: "What is the correct HTML for creating a hyperlink?",
                 options: [
-                    "color",
-                    "bgcolor",
-                    "background-color",
-                    "canvas-color"
+                    "<a href='http://example.com'>Example</a>",
+                    "<a url='http://example.com'>Example</a>",
+                    "<a>http://example.com</a>",
+                    "<link href='http://example.com'>Example</link>"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which HTML element is used to define an unordered list?",
+                options: ["<ol>", "<ul>", "<list>", "<dl>"],
+                correct: 1
+            },
+            {
+                question: "Which HTML element defines a table row?",
+                options: ["<td>", "<th>", "<row>", "<tr>"],
+                correct: 3
+            },
+            {
+                question: "In HTML, which element is used to define important text structurally?",
+                options: ["<important>", "<b>", "<strong>", "<i>"],
+                correct: 2
+            },
+            {
+                question: "Which HTML5 element is used to display a distinct, self-contained article on a page?",
+                options: ["<section>", "<article>", "<aside>", "<body>"],
+                correct: 1
+            },
+
+            // --- 10 CSS Questions ---
+            {
+                question: "What does CSS stand for?",
+                options: [
+                    "Creative Style Sheets",
+                    "Computer Style Sheets",
+                    "Cascading Style Sheets",
+                    "Colorful Style Sheets"
                 ],
                 correct: 2
             },
             {
-                question: "Which HTML tag is used to define an internal style sheet?",
-                options: [
-                    "<script>",
-                    "<css>",
-                    "<style>",
-                    "<link>"
-                ],
+                question: "Which CSS property is used to change the text color of an element?",
+                options: ["text-color", "fgcolor", "color", "font-color"],
                 correct: 2
-            }
-        ];
-
-        // State Tracking
-        let currentQuestionIndex = 0;
-        let score = 0;
-
-        // DOM Element Selections
-        const quizBox = document.getElementById("quiz-box");
-        const resultBox = document.getElementById("result-box");
-        const questionCounter = document.getElementById("question-counter");
-        const scoreCounter = document.getElementById("score-counter");
-        const questionText = document.getElementById("question-text");
-        const optionsContainer = document.getElementById("options-container");
-        const nextBtn = document.getElementById("next-btn");
-        const finalScore = document.getElementById("final-score");
-        const totalQuestions = document.getElementById("total-questions");
-        const restartBtn = document.getElementById("restart-btn");
-
-        // Initialize App
-        function startQuiz() {
-            currentQuestionIndex = 0;
-            score = 0;
-            resultBox.style.display = "none";
-            quizBox.style.display = "block";
-            scoreCounter.textContent = `Score: ${score}`;
-            loadQuestion();
-        }
-
-        // Render Current Question
-        function loadQuestion() {
-            resetState();
-            const currentData = quizData[currentQuestionIndex];
-            
-            // Set Text
-            questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
-            questionText.textContent = currentData.question;
-
-            // Render Option Buttons
-            currentData.options.forEach((option, index) => {
-                const button = document.createElement("button");
-                button.textContent = option;
-                button.classList.add("option-btn");
-                button.addEventListener("click", () => selectAnswer(index, button));
-                optionsContainer.appendChild(button);
-            });
-        }
-
-        // Clean up visual states before loading next question
-        function resetState() {
-            nextBtn.style.display = "none";
-            optionsContainer.innerHTML = "";
-        }
-
-        // Handle Choice Selection
-        function selectAnswer(selectedIndex, selectedButton) {
-            const correctAnswerIndex = quizData[currentQuestionIndex].correct;
-            const allButtons = optionsContainer.querySelectorAll(".option-btn");
-
-            // Evaluate answer
-            if (selectedIndex === correctAnswerIndex) {
-                selectedButton.classList.add("correct");
-                score++;
-                scoreCounter.textContent = `Score: ${score}`;
-            } else {
-                selectedButton.classList.add("wrong");
-                // Reveal correct answer to the user
-                allButtons[correctAnswerIndex].classList.add("correct");
-            }
-
-            // Disable further choice clicks
-            allButtons.forEach(btn => btn.disabled = true);
-            
-            // Display advance button
-            nextBtn.style.display = "block";
-        }
-
-        // Advance to next screen
-        function handleNextButton() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quizData.length) {
-                loadQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        // Render Completion State
-        function showResults() {
-            quizBox.style.display = "none";
-            resultBox.style.display = "block";
-            finalScore.textContent = score;
-            totalQuestions.textContent = quizData.length;
-        }
-
-        // Event Attachments
-        nextBtn.addEventListener("click", handleNextButton);
-        restartBtn.addEventListener("click", startQuiz);
-
-        // Run on Initial Load
-        startQuiz();
-    </script>
-</body>
-</html>
+            },
+            {
+                question: "Which CSS property controls the text size?",
+                options: ["font-style", "text-size", "font-size", "text-style"],
+                correct: 2
+            },
+            {
+                question: "What is the correct CSS syntax to make all the <p> elements bold?",
+                options: [
+                    "p {font-weight: bold;}",
+                    "p {text-size: bold;}",
+                    "<p style='font-size: bold;'>",
+                    "p {font: bold;}"
+                ],
+                correct: 0
+            },
+            {
+                question: "How do you select an element with the id 'demo' in CSS?",
+                options: [".demo", "#demo", "demo", "*demo"],
+                correct: 1
+            },
+            {
+                question: "How do you select elements with the class name 'test' in CSS?",
+                options: ["#test", "*test", "test", ".test"],
+                correct: 3
+            },
+            {
+                question: "Which CSS property is used to change the left margin of an element?",
+                options: ["padding-left", "margin-left", "indent-left", "margin: left;"],
+                correct: 1
+            },
+            {
+                question: "In the CSS Box Model, which property creates space outside of an element's border?",
+                options: ["padding", "margin", "spacing", "content"],
+                correct: 1
+            },
+            {
+                question: "Which CSS property is used to display a border around an element?",
+                options: ["border-style", "border-width", "border-color", "border"],
+                correct: 3
+            },
+            {
