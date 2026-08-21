@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact the Developer | Cybrix Dev Hub</title>
+    <!-- Linked to your unified main stylesheet -->
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+<body>
+  
+  <!-- Ambient decorative background glow elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  
+  <!-- Top Navigation Header -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">⚡ Cybrix Dev Hub</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>         
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active-page-glow">Contact</a>
+    </div>
+  </nav>
+
+  <h1 class="qwerty">Connect with Cybrix</h1>  
+
+  <!-- Main Content Container Box -->
+  <div class="glass-contact-box">
+    
+    <div class="form-header-node">
+      <h2>➡️ Establish Secure Connection</h2>
+      <p class="form-intro-desc">
+        Have technical platform questions, curriculum feedback, or repository bug logs? Transmit your data profile string below. As an independent developer, I analyze incoming transmissions regularly and will return a reply via mail routing protocols within 24 standard hours.
+      </p>
+    </div>
+
+    <!-- FIXED ACTION URL: Added /submit to send the data properly -->
+    <form class="cybrix-glass-form" action="https://web3forms.com" method="POST">
+      
+      <!-- Your live access key remains intact -->
+      <input type="hidden" name="access_key" value="4690ffa0-cca8-4d16-bf6b-8be8b929cf5d">
+
+      <!-- Automatically redirects back to your contact form page upon submission success -->
+      <input type="hidden" name="redirect" value="">
+
+      <!-- Anti-Spam Honeypot Field (Invisible to human users, traps spam bots) -->
+      <input type="checkbox" name="botcheck" class="hidden-field-check" style="display: none;">
+
+      <!-- Input Tracking Group 1: Developer Handle -->
+      <div class="input-focus-group">
+        <input class="glass-input-field" type="text" id="dev-handle" name="developer_name" placeholder=" " required>
+        <label class="glass-floating-label" for="dev-handle">Developer Handle / Name</label>
+        <span class="focus-underline-track"></span>
+      </div>
+
+      <!-- Input Tracking Group 2: Email Address (Cleaned up placeholder space to keep floating animations smooth) -->
+      <div class="input-focus-group">
+        <input class="glass-input-field" type="email" id="dev-mail" name="email" placeholder=" " required>
+        <label class="glass-floating-label" for="dev-mail">Your Email Address</label>
+        <span class="focus-underline-track"></span>
+      </div>
+
+      <!-- Input Tracking Group 3: Dropdown selection structure -->
+      <div class="input-focus-group select-container-adjustment">
+        <label class="static-dropdown-label" for="dev-track">Active System Track</label>
+        <select class="glass-select-dropdown" id="dev-track" name="system_track">
+          <option value="general">General Platform Inquiry</option>
+          <option value="python">Python Programming Feedback</option>
+          <option value="javascript">JavaScript Script Architecture</option>
+          <option value="html-css">HTML &amp; CSS Presentation Design</option>
+        </select>
+      </div>
+
+      <!-- Input Tracking Group 4: Message Body Grid -->
+      <div class="input-focus-group textarea-adjustment">
+        <textarea class="glass-textarea-field" id="dev-msg" name="message_body" placeholder=" " rows="5" required></textarea>
+        <label class="glass-floating-label" for="dev-msg">Your Message Body</label>
+        <span class="focus-underline-track"></span>
+      </div>
+
+      <!-- Centered Submission Button -->
+      <div class="button-centering-row">
+        <button type="submit" class="cyber-submit-trigger">
+          Transmit Message Node
+          <svg class="send-icon-graphic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</body>
+</html>
