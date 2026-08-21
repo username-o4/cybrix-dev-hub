@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics Quiz</title>
+    <link rel="stylesheet" href="../js-style.css"
+</head>
+<body>
+
+    <div id="quiz-box">
+        <!-- Header -->
+        <h2 id="title">JavaScript Syntax Quiz</h2>
+        <p id="progress-text">Question 1 of 5</p>
+
+        <!-- Question -->
+        <p id="question-display">Loading question...</p>
+
+        <!-- Options Form -->
+        <form id="options-form">
+            <!-- JavaScript will insert radio buttons here -->
+        </form>
+
+        <br>
+        <!-- Feedback Message -->
+        <p id="message-display" style="font-weight: bold;"></p>
+
+        <!-- Action Buttons -->
+        <button id="submit-btn" type="button" onclick="checkSelectedAnswer()">Submit Answer</button>
+        <button id="next-btn" type="button" onclick="goToNextQuestion()" style="display: none;">Next Question</button>
+    </div>
+
+    <!-- Results Panel -->
+    <div id="results-box" style="display: none;">
+        <h2>Quiz Complete!</h2>
+        <p id="final-score"></p>
+        <button type="button" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+<script>
+    const questionsList = [
+        {
+            q: "Which keyword is used to declare a variable that cannot be reassigned?",
+            options: ["var", "let", "const", "set"],
+            correctIndex: 2,
+            explanations: [
+                "Incorrect. Variables declared with 'var' can be reassigned anywhere.",
+                "Incorrect. 'let' allows you to reassign values later.",
+                "Correct! 'const' creates a read-only reference that cannot be reassigned.",
+                "Incorrect. 'set' is not a variable declaration keyword in JavaScript."
+            ]
+        },
+        {
+            q: "How do you write a multi-line comment in JavaScript?",
+            options: ["// This is a comment", "/* This is a comment */", "<!-- This is a comment -->", "# This is a comment"],
+            correctIndex: 1,
+            explanations: [
+                "Incorrect. This is used for single-line comments.",
+                "Correct! '/* */' is the standard way to wrap multi-line comments.",
+                "Incorrect. This is the syntax for HTML comments, not JavaScript.",
+                "Incorrect. This is used in Python or Bash, not JavaScript."
+            ]
+        },
+        {
+            q: "Which method is used to write text directly into the browser console for debugging?",
+            options: ["console.log()", "window.print()", "document.write()", "console.print()"],
+            correctIndex: 0,
+            explanations: [
+                "Correct! console.log() prints messages directly to your developer tools panel.",
+                "Incorrect. This opens the browser print dialog window.",
+                "Incorrect. This writes directly into the HTML document stream.",
+                "Incorrect. 'console.print' is not a real JavaScript function."
+            ]
+        },
+        {
+            q: "What is the correct syntax to create an alert box pop-up?",
+            options: ["msg('Hello');", "alertBox('Hello');", "msgBox('Hello');", "alert('Hello');"],
+            correctIndex: 3,
+            explanations: [
+                "Incorrect. 'msg' is not a native browser function.",
+                "Incorrect. 'alertBox' does not exist in standard JavaScript.",
+                "Incorrect. 'msgBox' is used in other languages like VBScript.",
+                "Correct! The native alert() function launches a pop-up window in the browser."
+            ]
+        },
+        {
+            q: "Which operator is used for strict equality comparison (compares both value and type)?",
+            options: ["=", "==", "===", "!="],
+            correctIndex: 2,
+            explanations: [
+                "Incorrect. A single equals sign assigns a value to a variable.",
+                "Incorrect. Double equals performs type conversion before comparing values.",
+                "Correct! Triple equals checks for strict equality without converting data types.",
+                "Incorrect. This operator checks for inequality."
+            ]
+        }
+    ];
+
+    let currentQuestion = 0;
+    let userScore = 0;
+
+    const questionDisplay = document.getElementById("question-display");
+    const optionsForm = document.getElementById("options-form");
+    const messageDisplay = document.getElementById("message-display");
+    const progressText = document.getElementById("progress-text");
+    const submitBtn = document.getElementById("submit-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const quizBox = document.getElementById("quiz-box");
+    const resultsBox = document.getElementById("results-box");
+    const finalScore = document.getElementById("final-score");
+
+    function renderQuestion() {
+        // Reset element states
+        messageDisplay.innerText = "";
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "inline-block";
+        optionsForm.innerHTML = "";
+
+        let activeData = questionsList[currentQuestion];
+        
+        // Update labels
+        progressText.innerText = `Question ${currentQuestion + 1} of ${questionsList.length}`;
+        questionDisplay.innerText = activeData.q;
+
+        // Render radio option items using basic HTML properties
+        activeData.options.forEach((choice, index) => {
+            const label = document.createElement("label");
+            const radio = document.createElement("input");
+            
+            radio.type = "radio";
+            radio.name = "quiz-choice";
+            radio.value = index;
+            
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(" " + choice));
+            
+            optionsForm.appendChild(label);
+            optionsForm.appendChild(document.createElement("br")); // Simple line break
+        });
+    }
+
+    function checkSelectedAnswer() {
+        const selectedRadio = document.querySelector('input[name="quiz-choice"]:checked');
+        
+        if (!selectedRadio) {
+            messageDisplay.innerText = "Please select an answer choice before submitting.";
+            return;
+        }
+
+        let userSelection = parseInt(selectedRadio.value);
+        let activeData = questionsList[currentQuestion];
+        
+        // Lock inputs from being clicked again
+        const radios = document.getElementsByName("quiz-choice");
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].disabled = true;
+        }
+
+        // Evaluate choices
+        if (userSelection === activeData.correctIndex) {
+            userScore++;
+            messageDisplay.innerText = "Correct! " + activeData.explanations[userSelection];
+        } else {
+            messageDisplay.innerText = "Wrong. " + activeData.explanations[userSelection];
+        }
+
+        // Toggle action buttons
+        submitBtn.style.display = "none";
+        nextBtn.style.display = "inline-block";
+    }
+
+    function goToNextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questionsList.length) {
+            renderQuestion();
+        } else {
+            showEndScreen();
+        }
+    }
+
+    function showEndScreen() {
+        quizBox.style.display = "none";
+        resultsBox.style.display = "block";
+        finalScore.innerText = `You completed the test with a score of ${userScore} out of ${questionsList.length}.`;
+    }
+
+    function restartQuiz() {
+        currentQuestion = 0;
+        userScore = 0;
+        resultsBox.style.display = "none";
+        quizBox.style.display = "block";
+        renderQuestion();
+    }
+
+    // Run core initiation logic on load
+    renderQuestion();
+</script>
+
+</body>
+</html>
