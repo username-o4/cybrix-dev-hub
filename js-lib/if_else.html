@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering JavaScript Conditionals - Beginner Tutorial</title>
+    <link rel="stylesheet" href="../css/js-style.css">
+</head>
+<body>
+  
+  <!-- Main Banner Header Layout -->
+  <header></header> 
+  
+  <h1 class="qwerty">JavaScript Conditionals Explained</h1>  
+
+  <!-- Main Content Card Container -->
+  <div class="content-box">
+    
+    <!-- SECTION 1: INTRODUCTION -->
+    <h2>➡️ 1. What are Conditional Statements?</h2>
+    <p class="intro-text">
+      Up to this point, the JavaScript files you have created run from top to bottom without variation. The browser executes line one, passes to line two, and moves downward until it hits the end of the file. However, modern dynamic web applications must react to user inputs and changing system values on the fly. 
+    </p>
+    <p class="intro-text">
+      To make decisions in your code, JavaScript provides <strong>Conditional Statements</strong>. They allow your scripts to act as logical crossroads. By evaluating whether a specific condition calculates down to a Boolean state of <code>true</code> or <code>false</code>, you can tell the browser to run completely different paths of code, bringing interactive logic to your website interfaces.
+    </p>
+
+    <!-- SECTION 2: SYNTAX & CURLY BRACE RULES -->
+    <h2>➡️ 2. Writing Your First If / Else Statement</h2>
+    <p class="intro-text">
+      Unlike Python, which relies strictly on indentation spaces to group code paths, JavaScript uses **curly braces <code>{ }</code>** to lock in execution structures. 
+    </p>
+    <p class="intro-text">
+      To write an if statement, combine the <code>if</code> keyword with a condition wrapped inside standard parentheses <code>( )</code>. The block of code that runs when that condition matches is placed immediately inside opening and closing curly braces.
+    </p>
+    
+    <!-- Code block sub-wrapper -->
+    <div class="code-snippet-box">
+      <pre><code><span class="code-comment">// Setting up an automated checkout balance check</span>
+let digitalBalance = 45;
+let itemCost = 30;
+
+if (digitalBalance >= itemCost) {
+    console.log("Purchase Approved!"); <span class="code-comment">// Runs only if condition matches true</span>
+} else {
+    console.log("Insufficient Funds!");  <span class="code-comment">// Fallback path when condition fails</span>
+}</code></pre>
+    </div>
+
+    <!-- SECTION 3: JAVASCRIPT COMPARISON OPERATORS -->
+    <h2>➡️ 3. The Comparison Toolbox & Strict Equality</h2>
+    <p class="intro-text">
+      To construct operational rules inside your parentheses, you must use evaluation operators. While most symbols mimic standard math operations, JavaScript introduces a unique engineering constraint when checking for exact equality:
+    </p>
+    <ul class="features-list">
+      <li><strong><code>===</code> (Strict Equal To):</strong> Checks if two values match perfectly in both data value and data type. **Always use three equals signs** in JavaScript. Using two equals signs (<code>==</code>) is looser and can lead to silent data bugs.</li>
+      <li><strong><code>!==</code> (Strict Not Equal To):</strong> Verifies if two values or types are completely different.</li>
+      <li><strong><code>&gt;</code> and <code>&lt;</code>:</strong> Traditional greater than and less than comparison markers.</li>
+      <li><strong><code>&gt;=</code> and <code>&lt;=</code>:</strong> Greater than or equal to, and less than or equal to properties.</li>
+    </ul>
+
+    <!-- SECTION 4: MULTIPLE PATHS WITH ELSE IF -->
+    <h2>➡️ 4. Handling Complex Multi-Gated Conditions</h2>
+    <p class="intro-text">
+      When your application requires checking more than two distinct outcomes, JavaScript uses the <code>else if</code> statement. You can chain as many individual else if statements as your architecture demands. The browser engine processes them sequentially from top to bottom, stopping instantly on the very first match it flags as true.
+    </p>
+    
+    <div class="code-snippet-box">
+      <pre><code>let userRole = "moderator";
+
+if (userRole === "admin") {
+    console.log("Full Admin Access Granted.");
+} else if (userRole === "moderator") {
+    console.log("Moderator Panel Loaded."); <span class="code-comment">// Browser matches and runs this path</span>
+} else {
+    console.log("Standard Guest View Loaded."); <span class="code-comment">// Final fallback path</span>
+}</code></pre>
+    </div>
+
+    <!-- SECTION 5: COMMON BEGINNER PITFALLS -->
+    <h2>➡️ 5. Mistakes that Break Frontend Logic</h2>
+    <p class="intro-text">
+      Transitioning logic formats can open up room for common developmental oversights:
+    </p>
+    <ul class="features-list">
+      <li>
+        ⚠️ <strong>The Assignment Instead of Comparison Trap:</strong> Writing <code>if (status = "active")</code> using a single equals sign will overwrite your variable instead of evaluating it, breaking your app's core operations. Remember to utilize <code>===</code> for checking values.
+      </li>
+      <li>
+        ⚠️ <strong>Missing Parentheses:</strong> Forgetting to wrap your logical rule inside operational parentheses <code>( )</code> triggers a severe syntax compilation error from your browser engine.
+      </li>
+      <li>
+        ⚠️ <strong>Brace Matching Errors:</strong> Every opening curly brace <code>{</code> requires a matching closing brace <code>}</code>. Misaligning these blocks causes your script to clip distinct functions together accidentally.
+      </li>
+    </ul>
+
+    <!-- SECTION 6: INTERACTIVE CHALLENGE -->
+    <h2>➡️ 6. Hands-On Logic Block Practice</h2>
+    <p class="intro-text">
+      Let's write some browser logic! Open up your local script workspace environment and complete this coding challenge:
+      Create a mutable variable named <code>trafficLight</code> holding a string like <code>"yellow"</code>. 
+      Write an if statement that outputs <code>"Stop!"</code> to the console window if the light matches <code>"red"</code>. 
+      Attach an else if block that outputs <code>"Slow Down!"</code> if the color variable strictly matches <code>"yellow"</code>. 
+      Finally, add a generic else block to output <code>"Go!"</code> if any other state occurs.
+    </p>
+     <div class="js-cta-container">
+            <a href="loops.html" class="js-btn-start">Loops</a>
+        </div>
+  </div>
+  </div>
+
+</body>
+</html>
