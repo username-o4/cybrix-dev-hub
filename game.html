@@ -1,249 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Break Room - Bug Smasher</title>
-    <style>
-        .game-wrapper {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #1a1a1a;
-            color: #00ff00;
-            padding: 20px;
-            border-radius: 12px;
-            max-width: 440px;
-            margin: 30px auto;
-            text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            border: 2px solid #333;
-        }
-        .game-header h2 {
-            margin: 0 0 5px 0;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .game-header p {
-            color: #888;
-            margin: 0 0 15px 0;
-            font-size: 0.9rem;
-        }
-        .score-board {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            padding: 0 10px;
-        }
-        #gameCanvas {
-            background-color: #000;
-            border: 4px solid #00ff00;
-            border-radius: 6px;
-            display: block;
-            margin: 0 auto;
-        }
-        .controls-info {
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #888;
-            line-height: 1.4;
-        }
-        .start-btn {
-            background-color: #00ff00;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-family: inherit;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.2s;
-        }
-        .start-btn:hover {
-            background-color: #00cc00;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Danger Dash - 2D Runner</title>
+  <style>
+    /* 1. Global Reset & Full Height Settings */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #010122; /* Pure premium deep dark blue */
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden; /* Stops accidental screen dragging on mobile */
+    }
+
+    /* 2. Responsive Navbar Layout */
+    .navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(1, 1, 34, 0.95);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    .logo {
+      color: #ffffff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #00ffcc;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00ffcc;
+    }
+
+    /* 3. Central Game Wrapper & Hero Layout */
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      width: 100%;
+      max-width: 800px;
+      padding: 15px;
+      gap: 15px;
+    }
+
+    /* The Main Game Screen Panel */
+    .game-container {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      height: 400px;
+      background: linear-gradient(to bottom, #020230, #050544);
+      border: 3px solid #00ffcc;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    /* Custom Interactive HUD Panels */
+    .ui-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Allows clicks/taps to pass to canvas */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .score-box {
+      background: rgba(1, 1, 34, 0.85);
+      border: 1px solid #00ffcc;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #00ffcc;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 255, 204, 0.1);
+    }
+
+    /* Screens (Start / Game Over) */
+    .screen-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(1, 1, 34, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      gap: 15px;
+      z-index: 5;
+      pointer-events: auto; /* Catch operations */
+    }
+
+    .screen-overlay h2 {
+      font-size: 2.2rem;
+      color: #00ffcc;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+    }
+
+    .screen-overlay p {
+      color: #a0a0c0;
+      font-size: 0.95rem;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    /* 4. Neon Link Buttons */
+    .btn {
+      background-color: rgb(1, 1, 34);
+      padding: 12px 28px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #00ffcc;
+      text-decoration: none;
+      border-radius: 10px;
+      border: 2px solid #00ffcc;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      background-color: #00ffcc;
+      color: rgb(1, 1, 34);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* 5. Minimal Footer Positioning */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      background-color: rgba(1, 1, 34, 0.5);
+      border-top: 1px solid #151544;
+      font-size: 0.85rem;
+      color: #777797;
+    }
+
+    footer a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 📱 6. LAPTOP & MOBILE VIEW RESPONSIVE MEDIA QUERIES */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .game-wrapper {
+        margin: 15px auto;
+        padding: 0 15px;
+      }
+
+      .game-container {
+        height: 360px; /* Slight scale down to maximize viewport safety */
+      }
+
+      .screen-overlay h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="game-wrapper">
-    <div class="game-header">
-        <h2>Bug Smasher 2D</h2>
-        <p>Tired of learning? Smash some bugs!</p>
+  <!-- Premium Header Navbar -->
+  <nav class="navbar">
+    <div class="logo">DANGER<span>DASH</span></div>
+    <ul class="nav-links">
+      <li><a href="#play">Game</a></li>
+      <li><a href="https://www.geeksforgeeks.org/quizzes/" target="_blank">Quizzes</a></li>
+    </ul>
+  </nav>
+
+  <!-- Interactive Sandbox Game Workspace -->
+  <div class="game-wrapper" id="play">
+    <div class="game-container">
+      
+      <!-- Start Screen Menu Overlay -->
+      <div id="start-screen" class="screen-overlay">
+        <h2>Danger Dash</h2>
+        <p>Avoid oncoming dangerous plasma blocks! Swipe <b>Left/Right</b> or use your keyboard arrow keys to swap lanes instantly.</p>
+        <button class="btn" id="start-btn">START DASH</button>
+      </div>
+
+      <!-- Game Over Screen Menu Overlay -->
+      <div id="gameover-screen" class="screen-overlay hidden">
+        <h2>Game Over</h2>
+        <p>You crashed into a data anomaly. Your final score is logged below.</p>
+        <div class="score-box" style="margin: 5px 0 15px 0;">SCORE: <span id="final-score">0</span></div>
+        <button class="btn" id="restart-btn">DASH AGAIN</button>
+      </div>
+
+      <!-- Canvas Rendering Viewport -->
+      <canvas id="gameCanvas" width="480" height="400"></canvas>
+
+      <!-- Overlay HUD Interface Layer -->
+      <div class="ui-layer">
+        <div class="hud">
+          <div class="score-box">SCORE: <span id="live-score">0</span></div>
+          <div class="score-box" style="color: #ff5555; border-color: #ff5555;">HI: <span id="high-score">0</span></div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <div class="score-board">
-        <div>Bugs Fixed: <span id="currentScore">0</span></div>
-        <div>High Score: <span id="highScore">0</span></div>
-    </div>
+  <!-- Minimal Footer Section -->
+  <footer>
+    &copy; 2026 Danger Dash Arcade. Test your skills on <a href="https://www.geeksforgeeks.org/quizzes/" target="_blank">GeeksforGeeks</a>.
+  </footer>
 
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
-    <button class="start-btn" id="startBtn" onclick="startGame()">Start Game</button>
+    // DOM UI Hooks
+    const startScreen = document.getElementById('start-screen');
+    const gameoverScreen = document.getElementById('gameover-screen');
+    const startBtn = document.getElementById('start-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const liveScoreText = document.getElementById('live-score');
+    const finalScoreText = document.getElementById('final-score');
+    const highScoreText = document.getElementById('high-score');
 
-    <div class="controls-info">
-        <strong>Controls:</strong> Use the <strong>Arrow Keys</strong> or <strong>W, A, S, D</strong> on your keyboard to navigate. Don't hit the green border or your own code tail!
-    </div>
-</div>
-
-<script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    const scoreElement = document.getElementById("currentScore");
-    const highScoreElement = document.getElementById("highScore");
-    const startBtn = document.getElementById("startBtn");
-
-    const gridSize = 20;
-    const tileCount = canvas.width / gridSize;
-
-    let snake = [];
-    let bug = { x: 0, y: 0 };
-    let dx = gridSize;
-    let dy = 0;
+    // Engine Configurations
+    const LANE_COUNT = 3;
+    const LANE_WIDTH = canvas.width / LANE_COUNT;
+    
     let score = 0;
-    let highScore = 0;
-    let gameInterval = null;
-    let isGameRunning = false;
+    let highScore = localStorage.getItem('danger_dash_hi') || 0;
+    highScoreText.innerText = highScore;
+
+    let gameActive = false;
+    let currentLane = 1; // Start in middle lane (Lanes: 0, 1, 2)
+    let targetX = currentLane * LANE_WIDTH + LANE_WIDTH / 2;
+    let playerX = targetX;
+    let playerY = canvas.height - 70;
+    let playerRadius = 18;
+
+    let obstacles = [];
+    let spawnTimer = 0;
+    let gameSpeed = 4;
+
+    // Initialize Event Listeners
+    startBtn.addEventListener('click', startGame);
+    restartBtn.addEventListener('click', startGame);
+
+    // Keyboard Controller Engine
+    window.addEventListener('keydown', (e) => {
+      if (!gameActive) return;
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+        movePlayer(-1);
+      } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+        movePlayer(1);
+      }
+    });
+
+    // Touch Swiping Engine Setup
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    canvas.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    canvas.addEventListener('touchend', (e) => {
+      if (!gameActive) return;
+      let diffX = e.changedTouches[0].clientX - touchStartX;
+      let diffY = e.changedTouches[0].clientY - touchStartY;
+
+      // Ensure horizontal swipe is dominant and passes threshold
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 30) {
+        if (diffX > 0) {
+          movePlayer(1);  // Swipe Right
+        } else {
+          movePlayer(-1); // Swipe Left
+        }
+      }
+    }, { passive: true });
+
+    function movePlayer(dir) {
+      currentLane = Math.max(0, Math.min(LANE_COUNT - 1, currentLane + dir));
+      targetX = currentLane * LANE_WIDTH + LANE_WIDTH / 2;
+    }
 
     function startGame() {
-        if (isGameRunning) return;
-        
-        // Reset variables
-        snake = [
-            { x: gridSize * 5, y: gridSize * 10 },
-            { x: gridSize * 4, y: gridSize * 10 },
-            { x: gridSize * 3, y: gridSize * 10 }
-        ];
-        dx = gridSize;
-        dy = 0;
-        score = 0;
-        scoreElement.innerText = score;
-        isGameRunning = true;
-        startBtn.style.display = "none";
-        
-        generateBug();
-        
-        if (gameInterval) clearInterval(gameInterval);
-        // Run game loop every 100ms (Adjust for difficulty)
-        gameInterval = setInterval(updateGame, 100);
+      score = 0;
+      gameSpeed = 4.5;
+      currentLane = 1;
+      targetX = currentLane * LANE_WIDTH + LANE_WIDTH / 2;
+      playerX = targetX;
+      obstacles = [];
+      spawnTimer = 0;
+      liveScoreText.innerText = score;
+      
+      startScreen.classList.add('hidden');
+      gameoverScreen.classList.add('hidden');
+      gameActive = true;
     }
 
-    function generateBug() {
-        bug.x = Math.floor(Math.random() * tileCount) * gridSize;
-        bug.y = Math.floor(Math.random() * tileCount) * gridSize;
-        
-        // Ensure bug doesn't spawn inside the snake
-        snake.forEach(part => {
-            if (part.x === bug.x && part.y === bug.y) {
-                generateBug();
-            }
+    function triggerGameOver() {
+      gameActive = false;
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('danger_dash_hi', highScore);
+        highScoreText.innerText = highScore;
+      }
+      finalScoreText.innerText = score;
+      gameoverScreen.classList.remove('hidden');
+    }
+
+    // Core Loop Core Engine
+    function update() {
+      if (!gameActive) return;
+
+      // Soft slide player towards target lane position
+      playerX += (targetX - playerX) * 0.25;
+
+      // Increment Speed & Obstacle Generation Mechanics
+      gameSpeed += 0.0008;
+      spawnTimer++;
+      
+      // Dynamic scaling spawn frequency based on runtime speed
+      let spawnInterval = Math.max(35, 75 - Math.floor(gameSpeed * 2));
+      if (spawnTimer >= spawnInterval) {
+        spawnTimer = 0;
+        let randomLane = Math.floor(Math.random() * LANE_COUNT);
+        obstacles.push({
+          lane: randomLane,
+          x: randomLane * LANE_WIDTH + LANE_WIDTH / 2,
+          y: -40,
+          width: LANE_WIDTH * 0.6,
+          height: 30
         });
-    }
+      }
 
-    function updateGame() {
-        // Move snake head forward
-        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+      // Step obstacles forwards
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        let obs = obstacles[i];
+        obs.y += gameSpeed;
 
-        // Check for border collision
-        if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) {
-            return gameOver();
+        // Collision Logic
+        if (obs.y + obs.height >= playerY - playerRadius && obs.y <= playerY + playerRadius) {
+          if (Math.abs(obs.x - playerX) < (obs.width / 2 + playerRadius - 4)) {
+            triggerGameOver();
+            return;
+          }
         }
 
-        // Check self collision
-        for (let i = 0; i < snake.length; i++) {
-            if (head.x === snake[i].x && head.y === snake[i].y) {
-                return gameOver();
-            }
+        // Cleanup out of bounds entries
+        if (obs.y > canvas.height) {
+          obstacles.splice(i, 1);
+          score++;
+          liveScoreText.innerText = score;
         }
-
-        // Add new head to snake array
-        snake.unshift(head);
-
-        // Check if snake ate the bug
-        if (head.x === bug.x && head.y === bug.y) {
-            score++;
-            scoreElement.innerText = score;
-            if (score > highScore) {
-                highScore = score;
-                highScoreElement.innerText = highScore;
-            }
-            generateBug();
-        } else {
-            // Remove tail chunk if bug wasn't eaten
-            snake.pop();
-        }
-
-        draw();
+      }
     }
 
     function draw() {
-        // Clear canvas
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear Screen context view
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw bug (Red bug box)
-        ctx.fillStyle = "#ff3333";
-        ctx.fillRect(bug.x + 2, bug.y + 2, gridSize - 4, gridSize - 4);
+      // Render Vertical Track Lane Boundaries
+      ctx.strokeStyle = '#151544';
+      ctx.lineWidth = 2;
+      for (let i = 1; i < LANE_COUNT; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * LANE_WIDTH, 0);
+        ctx.lineTo(i * LANE_WIDTH, canvas.height);
+        ctx.stroke();
+      }
 
-        // Draw snake (Green developer block)
-        snake.forEach((part, index) => {
-            // Make the head a slightly different shade
-            ctx.fillStyle = index === 0 ? "#00ff00" : "#00aa00";
-            ctx.fillRect(part.x + 1, part.y + 1, gridSize - 2, gridSize - 2);
-        });
+      // Render Oncoming Danger Obstacles
+      obstacles.forEach(obs => {
+        ctx.fillStyle = '#ff3366'; // Vibrant Warning Red Neon Anomaly
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ff3366';
+        
+        // Draw round sleek hazard box
+        ctx.beginPath();
+        ctx.roundRect(obs.x - obs.width / 2, obs.y, obs.width, obs.height, 6);
+        ctx.fill();
+      });
+
+      // Render Dashboard Cyber Player Sphere
+      if (gameActive) {
+        ctx.fillStyle = '#00ffcc'; // Custom Interactive signature accent
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#00ffcc';
+        
+        ctx.beginPath();
+        ctx.arc(playerX, playerY, playerRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Reset Shadow properties context
+      ctx.shadowBlur = 0;
     }
 
-    function gameOver() {
-        clearInterval(gameInterval);
-        isGameRunning = false;
-        startBtn.style.display = "inline-block";
-        startBtn.innerText = "Try Again";
-        
-        // Render Game Over Screen Text
-        ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = "#ff3333";
-        ctx.font = "24px 'Courier New'";
-        ctx.textAlign = "center";
-        ctx.fillText("CRASH LOG GENERATED", canvas.width / 2, canvas.height / 2 - 10);
-        
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "14px 'Courier New'";
-        ctx.fillText("Game Over. Your code compilation failed.", canvas.width / 2, canvas.height / 2 + 20);
+    function tick() {
+      update();
+      draw();
+      requestAnimationFrame(tick);
     }
 
-    // Keyboard Event Listener
-    window.addEventListener("keydown", e => {
-        if (!isGameRunning) return;
-        
-        const key = e.key.toLowerCase();
-        
-        // Prevent default scrolling keys behavior
-        if(["arrowup","arrowdown","arrowleft","arrowright"," "].indexOf(e.key) > -1) {
-            e.preventDefault();
-        }
-
-        // Change directions safely (Prevent 180-degree immediate self-crashing moves)
-        if ((key === "arrowup" || key === "w") && dy === 0) {
-            dx = 0; dy = -gridSize;
-        } else if ((key === "arrowdown" || key === "s") && dy === 0) {
-            dx = 0; dy = gridSize;
-        } else if ((key === "arrowleft" || key === "a") && dx === 0) {
-            dx = -gridSize; dy = 0;
-        } else if ((key === "arrowright" || key === "d") && dx === 0) {
-            dx = gridSize; dy = 0;
-        }
-    });
-
-    // Draw initial blank canvas structure
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-</script>
-
+    // Launch Game Architecture Lifecycle
+    tick();
+  </script>
 </body>
 </html>
-
