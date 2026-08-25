@@ -1,148 +1,202 @@
-        /* 1. Global Reset & Full Height Settings */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* 1. Global Reset & Full Height Settings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        body {
-            height: 100vh;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #ffffff; /* 🎯 Clean, crisp pure white background */
-            color: #1a1a3a;            /* Dark premium navy text for excellent contrast */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            overflow: hidden;          /* Prevents accidental scrolling on mobile */
-        }
+body {
+  height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #ffffff; /* 🎯 Clean, crisp pure white background */
+  color: #1a1a3a; /* Dark premium navy text for excellent contrast */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden; /* Prevents accidental scrolling on desktop */
+}
 
-        /* 2. Your Professional Transparent Dark Navbar */
-        .navbar {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background: rgba(1, 1, 34, 0.95); /* Matches your signature dark blue code */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
+/* 2. Your Professional Transparent Dark Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: rgba(1, 1, 34, 0.95); /* Matches your signature dark blue code */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
 
-        .logo {
-            color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+.logo {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
 
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
 
-        .nav-links a:hover {
-            color: #00ffcc; /* Bright neon accent on mouse hover */
-        }
+.nav-links a:hover {
+  color: #00ffcc; /* Bright neon accent on mouse hover */
+}
 
-        /* 3. Central Hero Section Layout */
-        .hero-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            gap: 20px;
-            max-width: 650px;
-            margin: auto; /* Centers the whole block vertically and horizontally */
-        }
+/* 3. Central Hero Section Layout */
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  gap: 20px;
+  max-width: 650px;
+  margin: auto; /* Centers the whole block vertically and horizontally */
+}
 
-        h1 {
-            font-size: 3rem;
-            color: rgb(1, 1, 34); /* Dark blue headline matching your palette */
-            margin-bottom: 5px;
-            font-weight: 800;
-        }
+h1 {
+  font-size: 3rem;
+  color: rgb(1, 1, 34); /* Dark blue headline matching your palette */
+  margin-bottom: 5px;
+  font-weight: 800;
+}
 
-        /* 🎯 PERFECTLY ROUNDED AVATAR IMAGE FIXED */
-        .profile-img {
-            height: 110px;
-            width: 110px;
-            border-radius: 50%; /* Forms a perfect circle */
-            object-fit: cover;  /* Stops facial profile or logo stretch */
-            border: 4px solid rgb(1, 1, 34); /* Elegant dark framing border */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            display: block;
-        }
+/* 🎯 PERFECTLY ROUNDED AVATAR IMAGE FIXED */
+.profile-img {
+  height: 110px;
+  width: 110px;
+  border-radius: 50%; /* Forms a perfect circle */
+  object-fit: cover; /* Stops facial profile or logo stretch */
+  border: 4px solid rgb(1, 1, 34); /* Elegant dark framing border */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  display: block;
+}
 
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: #555575;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: #555575;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
 
-        /* 4. RE-STYLED NEON DASHBOARD LINK BUTTONS */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap; /* Wraps button stack neatly on mobile screens */
-        }
+/* 4. RE-STYLED NEON DASHBOARD LINK BUTTONS */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap; /* Wraps button stack neatly on mobile screens */
+}
 
-        .btn {
-            background-color: rgb(1, 1, 34); /* Dark signature navy background */
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #00ffcc; /* Vibrant neon text */
-            text-decoration: none;
-            border-radius: 10px;
-            border: 2px solid #00ffcc; /* Sleek neon framing line */
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+.btn {
+  background-color: rgb(1, 1, 34); /* Dark signature navy background */
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #00ffcc; /* Vibrant neon text */
+  text-decoration: none;
+  border-radius: 10px;
+  border: 2px solid #00ffcc; /* Sleek neon framing line */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        /* Smooth interactive hover animation states */
-        .btn:hover {
-            background-color: #00ffcc;
-            color: rgb(1, 1, 34); /* Swaps theme coloring cleanly on contact */
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
-            transform: translateY(-2px); /* Gentle upward pop motion */
-        }
+/* Smooth interactive hover animation states */
+.btn:hover {
+  background-color: #00ffcc;
+  color: rgb(1, 1, 34); /* Swaps theme coloring cleanly on contact */
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+  transform: translateY(-2px); /* Gentle upward pop motion */
+}
 
-        /* 5. Minimal Footer Positioning */
-        footer {
-            width: 100%;
-            text-align: center;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eeeeee;
-            font-size: 0.9rem;
-            color: #777797;
-        }
+/* 5. Minimal Footer Positioning */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eeeeee;
+  font-size: 0.9rem;
+  color: #777797;
+}
 
-        footer a {
-            color: rgb(1, 1, 34);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 5px;
-        }
-        
-        footer a:hover {
-            text-decoration: underline;
-        }
+footer a {
+  color: rgb(1, 1, 34);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* 📱 6. MOBILE RESPONSIVE OPTIMIZATIONS (ADDED) */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto; /* Allows scrolling on small screens so text is never cut off */
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .navbar {
+    padding: 15px 20px; /* Reduces massive desktop padding */
+    flex-direction: column; /* Stacks logo and nav links vertically */
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 20px; /* Tightens navigation spacing */
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+  }
+
+  .hero-center {
+    margin: 40px auto; /* Adds healthy breathing room on top and bottom */
+    padding: 0 24px;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 2.2rem; /* Reduces size so text doesn't awkwardly break lines */
+  }
+
+  .profile-img {
+    height: 95px; /* Safely scales down avatar image */
+    width: 95px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn-group {
+    flex-direction: column; /* Stacks links vertically for easy thumb-tapping */
+    width: 100%;
+    max-width: 300px; /* Limits width so buttons don't look overly stretched */
+  }
+
+  .btn {
+    width: 100%; /* Makes buttons full-width inside the group container */
+    padding: 14px 20px; /* Enhances mobile touch target area */
+  }
+}
