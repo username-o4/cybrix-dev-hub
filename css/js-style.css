@@ -135,8 +135,56 @@ p {
     transform: translateY(0);
 }
 
-/* Responsive Scaling */
+/* 📱 RESPONSIVE SCALING & PHONE OPTIMIZATIONS */
 @media (max-width: 600px) {
-    .js-hero-header h1 { font-size: 2rem; }
-    .js-info-card { padding: 1.75rem; }
+    /* Tighten up massive hero section top/bottom padding */
+    .js-hero-header {
+        padding: 3rem 1.25rem;
+    }
+
+    /* Scale down large headline to fit smaller viewports neatly */
+    .js-hero-header h1 { 
+        font-size: 2rem; 
+        line-height: 1.2;
+    }
+
+    /* Adjust the description subtext size for smaller displays */
+    .js-hero-header p {
+        font-size: 1rem;
+    }
+
+    /* Reduce spacing between structural sections */
+    .js-main-container {
+        padding: 2rem 1rem;
+    }
+
+    /* Compress card inner padding to gain screen space, add soft margins */
+    .js-info-card { 
+        padding: 1.5rem 1.25rem; 
+        margin-bottom: 2rem;
+    }
+
+    /* Balance out secondary headers */
+    h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Optimize lists to prevent bullet points hanging over edges */
+    .js-uses-list {
+        padding-left: 1.1rem;
+    }
+
+    /* Full-width, thumb-friendly call-to-action button */
+    .js-cta-container {
+        margin-top: 2.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .js-btn-start {
+        display: block; /* Stretches button fully across its parent container */
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
 }
